@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Walkie Talkie - Blue Edition</title>
-<!-- Brand Logo Favicon (Inline SVG Data URI) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='64' y2='64' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230084ff'/%3E%3Cstop offset='1' stop-color='%23005bb5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z' fill='white'/%3E%3Cpath d='M26 27C26 25 28 23 32 23C36 23 38 25 38 27' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='32' cy='34' r='1.5' fill='%230084ff'/%3E%3C/svg%3E">
+<title>LinkUp - Walkie Talkie Web</title>
+<!-- Brand Logo Favicon -->
+<link rel="icon" type="image/png" href="logo.png">
 
 <style>
 :root{
@@ -72,19 +72,21 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .brand-box{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   margin-right:auto;
   cursor:pointer;
 }
-.app-logo-svg{
-  width:32px;
-  height:32px;
+.app-logo-img{
+  width:34px;
+  height:34px;
   flex:none;
-  filter:drop-shadow(0 2px 4px rgba(0,132,255,.3));
+  border-radius:9px;
+  object-fit:cover;
+  filter:drop-shadow(0 2px 6px rgba(0,132,255,.35));
 }
 .brand-title{
   font-weight:700;
-  font-size:1.05rem;
+  font-size:1.1rem;
   background:linear-gradient(135deg, #0084ff 0%, #005bb5 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -264,7 +266,8 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 #no-chat h2{color:var(--wa-text);font-weight:600;font-size:1.75rem;margin-top:4px}
 #no-chat p{font-size:.92rem;line-height:1.55;max-width:480px}
-.no-chat-logo{width:88px;height:88px;filter:drop-shadow(0 8px 20px rgba(0,132,255,.25))}
+.no-chat-logo{width:96px;height:96px;border-radius:22px;object-fit:cover;filter:drop-shadow(0 8px 24px rgba(0,132,255,.28))}
+.auth-modal-logo{width:68px;height:68px;border-radius:16px;object-fit:cover;margin:0 auto;filter:drop-shadow(0 4px 14px rgba(0,132,255,.25))}
 
 /* Chat header */
 #chat-header{
@@ -608,21 +611,9 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
  <aside id="side">
   <div class="side-header">
    <!-- Website Logo & Title -->
-   <div class="brand-box" id="btn-brand-home" title="Walkie Talkie Web - Home">
-    <svg class="app-logo-svg" viewBox="0 0 64 64" fill="none">
-     <defs>
-      <linearGradient id="logoG" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-       <stop stop-color="#0084ff"/>
-       <stop offset="1" stop-color="#005bb5"/>
-      </linearGradient>
-     </defs>
-     <rect width="64" height="64" rx="16" fill="url(#logoG)"/>
-     <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
-     <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-     <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-     <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
-    </svg>
-    <span class="brand-title">WalkieTalkie</span>
+   <div class="brand-box" id="btn-brand-home" title="LinkUp Web - Home">
+    <img class="app-logo-img" src="logo.png" alt="LinkUp Logo">
+    <span class="brand-title">LinkUp</span>
    </div>
 
    <div class="my-av-box" id="my-av-btn" title="View & Edit Profile">
@@ -722,20 +713,8 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 
   <!-- No chat selected empty state -->
   <div id="no-chat">
-   <svg class="no-chat-logo" viewBox="0 0 64 64" fill="none">
-    <defs>
-     <linearGradient id="logoLg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0084ff"/>
-      <stop offset="1" stop-color="#005bb5"/>
-     </linearGradient>
-    </defs>
-    <rect width="64" height="64" rx="16" fill="url(#logoLg)"/>
-    <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
-    <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-    <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-    <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
-   </svg>
-   <h2>WalkieTalkie Web</h2>
+   <img class="no-chat-logo" src="logo.png" alt="LinkUp Logo">
+   <h2>LinkUp Web</h2>
    <p>Send instant voice notes, text messages, photos, files, and make calls in high definition. Stay connected with friends, groups, and channels.</p>
    <button class="btn-primary" id="btn-start-chat" style="margin-top:10px">Start a New Chat</button>
   </div>
@@ -1043,7 +1022,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <!-- Live Auto-Suggestions dropdown list -->
    <ul class="suggestions-box" id="friend-suggestions-list"></ul>
 
-   <label style="font-size:.84rem;color:var(--wa-mute);margin-top:4px">Custom Name (only visible to you on this device):</label>
+   <label style="font-size:.84rem;color:var(--wa-mute)">Custom Name (only visible to you on this device):</label>
    <input class="input-field" id="input-friend-name" placeholder="Contact Nickname (optional)" maxlength="30" autocomplete="off">
 
    <div class="modal-foot" style="margin:8px -22px -20px;padding-bottom:14px">
@@ -1174,17 +1153,12 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 <div class="modal-overlay" id="modal-auth">
  <div class="modal-card">
   <div class="modal-head" style="justify-content:center">
-   <span>Welcome to WalkieTalkie</span>
+   <span>Welcome to LinkUp</span>
   </div>
 
   <!-- STEP 1: Account Creation & Details -->
   <form id="form-auth-step1" class="modal-body" style="text-align:center">
-   <svg class="no-chat-logo" style="width:64px;height:64px;margin:0 auto" viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="16" fill="url(#logoLg)"/>
-    <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
-    <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-    <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
-   </svg>
+   <img class="auth-modal-logo" src="logo.png" alt="LinkUp Logo">
    <h3 style="font-size:1.15rem;font-weight:700">Create Your Account</h3>
    <p style="font-size:.84rem;color:var(--wa-mute);margin-top:-6px">
     Choose your username and account type with secure mobile/email verification.
@@ -1293,7 +1267,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 <div id="push-otp-banner">
  <span>📲</span>
  <div>
-  <div style="font-size:.78rem;color:#94a3b8">WalkieTalkie Security Verification</div>
+  <div style="font-size:.78rem;color:#94a3b8">LinkUp Security Verification</div>
   <div style="font-size:.9rem">Your 6-digit code is: <span class="otp-pill" id="banner-otp-code">---</span></div>
  </div>
 </div>
@@ -1376,7 +1350,7 @@ let channels=ls.get('wt_channels',{})||{
     id:'TECH-UPDATES',name:'Tech & Gadgets',category:'Technology & Code',desc:'Daily tech news, product launches & tips',owner:ECHO,followers:[ECHO],photo:''
   },
   'OFFICIAL-ANNOUNCE':{
-    id:'OFFICIAL-ANNOUNCE',name:'WalkieTalkie Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
+    id:'OFFICIAL-ANNOUNCE',name:'LinkUp Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
   }
 };
 

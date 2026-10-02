@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LinkUp - Walkie Talkie Web</title>
-<!-- Brand Logo Favicon -->
-<link rel="icon" type="image/png" href="logo.png">
+<title>Walkie Talkie - Blue Edition</title>
+<!-- Brand Logo Favicon (Original SVG Data URI) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='64' y2='64' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230084ff'/%3E%3Cstop offset='1' stop-color='%23005bb5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z' fill='white'/%3E%3Cpath d='M26 27C26 25 28 23 32 23C36 23 38 25 38 27' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='32' cy='34' r='1.5' fill='%230084ff'/%3E%3C/svg%3E">
 
 <style>
 :root{
-  --wa-teal:#0084ff;         /* WhatsApp / Messenger Royal Blue */
+  --wa-teal:#0084ff;         /* Primary Royal Blue */
   --wa-teal-dark:#005bb5;    /* Deep Royal Blue */
   --wa-teal-light:#38bdf8;   /* Sky Blue */
   --wa-green:#0084ff;        /* Primary Blue */
@@ -22,14 +22,44 @@
   --wa-sub:#94a3b8;
   --wa-bubble-me:#dbeafe;    /* Light Royal Blue bubble */
   --wa-bubble-them:#ffffff;
-  --wa-tick-blue:#0284c7;    /* Distinct vibrant Blue Double Tick */
+  --wa-tick-blue:#0284c7;    /* Vibrant Blue Double Tick */
   --wa-tick-grey:#94a3b8;
   --wa-amber:#f59e0b;
   --wa-red:#ef4444;
   --wa-biz-badge:#2563eb;
+  --card-bg:#ffffff;
+  --input-bg:#ffffff;
+  --modal-bg:#ffffff;
+  --radio-badge-bg:#eff6ff;
 }
+
+/* ========================================================
+   DARK THEME PALETTE
+   ======================================================== */
+[data-theme="dark"]{
+  --wa-teal:#38bdf8;         /* Cyan / Sky Blue in dark mode */
+  --wa-teal-dark:#0284c7;    /* Royal Blue */
+  --wa-teal-light:#7dd3fc;
+  --wa-green:#38bdf8;
+  --wa-bg:#090d16;           /* Deep dark canvas */
+  --wa-panel:#111827;        /* Chat panel */
+  --wa-sidebar:#0f172a;      /* Sidebar */
+  --wa-line:#1e293b;         /* Border lines */
+  --wa-text:#f8fafc;         /* White / light text */
+  --wa-mute:#94a3b8;         /* Muted subtitles */
+  --wa-sub:#64748b;
+  --wa-bubble-me:#1e3a8a;    /* Dark royal blue bubble */
+  --wa-bubble-them:#1e293b;  /* Slate dark bubble */
+  --wa-tick-blue:#38bdf8;
+  --wa-tick-grey:#64748b;
+  --card-bg:#1e293b;
+  --input-bg:#1e293b;
+  --modal-bg:#0f172a;
+  --radio-badge-bg:#1e293b;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#e2e8f0;color:var(--wa-text);overflow:hidden}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--wa-bg);color:var(--wa-text);overflow:hidden;transition:background .2s,color .2s}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;outline:none}
 button:disabled{cursor:not-allowed;opacity:.45}
 input,select,textarea{font:inherit;color:inherit;outline:none}
@@ -65,28 +95,26 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   display:flex;
   align-items:center;
   padding:10px 16px;
-  gap:10px;
+  gap:8px;
   border-bottom:1px solid var(--wa-line);
   flex:none;
 }
 .brand-box{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
   margin-right:auto;
   cursor:pointer;
 }
-.app-logo-img{
-  width:34px;
-  height:34px;
+.app-logo-svg{
+  width:32px;
+  height:32px;
   flex:none;
-  border-radius:9px;
-  object-fit:cover;
-  filter:drop-shadow(0 2px 6px rgba(0,132,255,.35));
+  filter:drop-shadow(0 2px 4px rgba(0,132,255,.3));
 }
 .brand-title{
   font-weight:700;
-  font-size:1.1rem;
+  font-size:1.05rem;
   background:linear-gradient(135deg, #0084ff 0%, #005bb5 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -99,25 +127,27 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .av{
   width:40px;height:40px;border-radius:50%;background:#e2e8f0;color:#475569;display:grid;place-items:center;font-weight:700;font-size:.95rem;position:relative;flex:none;
 }
+[data-theme="dark"] .av{background:#334155;color:#f8fafc}
 .av img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;z-index:1}
 .av span{z-index:1}
 .av .dot{
   position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:50%;background:#aaa;border:2px solid #fff;z-index:2;
 }
+[data-theme="dark"] .av .dot{border-color:#0f172a}
 .av .dot.on{background:var(--wa-teal)}
 .av.lg{width:76px;height:76px;font-size:2rem}
 .av.lg .dot{width:16px;height:16px;right:2px;bottom:2px}
 .av.group-av{background:linear-gradient(135deg, #0084ff, #005bb5);color:#fff}
 
 .icon-btn{
-  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#475569;transition:background .15s,color .15s;font-size:1.1rem;
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--wa-mute);transition:background .15s,color .15s;font-size:1.1rem;
 }
 .icon-btn:hover{background:rgba(0,132,255,.1);color:var(--wa-teal)}
 
 /* Top Sidebar Navigation Tabs (Chats, Status, Channels) */
 .nav-tabs-bar{
   display:flex;
-  background:#fff;
+  background:var(--card-bg);
   border-bottom:1px solid var(--wa-line);
   height:48px;
   flex:none;
@@ -136,7 +166,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   border-bottom:2.5px solid transparent;
   transition:all .15s;
 }
-.nav-tab:hover{color:var(--wa-teal);background:rgba(0,132,255,.03)}
+.nav-tab:hover{color:var(--wa-teal);background:rgba(0,132,255,.04)}
 .nav-tab.active{color:var(--wa-teal);border-bottom-color:var(--wa-teal)}
 .tab-badge-dot{
   width:7px;height:7px;border-radius:50%;background:var(--wa-teal);position:absolute;top:10px;right:18%;
@@ -146,6 +176,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .biz-badge{
   background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:4px;display:inline-flex;align-items:center;gap:3px;
 }
+[data-theme="dark"] .biz-badge{background:#1e3a8a44;border-color:#1e40af;color:#60a5fa}
 #admin-badge{
   background:#0f172a;color:#fff;font-size:.65rem;font-weight:800;padding:1px 6px;border-radius:4px;cursor:pointer;
 }
@@ -153,7 +184,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 /* Search & filter row */
 .search-row{
   padding:8px 12px;
-  background:#fff;
+  background:var(--card-bg);
   border-bottom:1px solid var(--wa-line);
   display:flex;
   gap:8px;
@@ -162,26 +193,26 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .search-box{
   flex:1;background:var(--wa-sidebar);border-radius:10px;display:flex;align-items:center;padding:0 12px;height:38px;gap:8px;border:1px solid transparent;transition:border-color .15s;
 }
-.search-box:focus-within{border-color:var(--wa-teal);background:#fff}
+.search-box:focus-within{border-color:var(--wa-teal);background:var(--card-bg)}
 .search-box input{flex:1;border:0;background:none;font-size:.88rem;color:var(--wa-text)}
 .filter-tabs{
-  display:flex;gap:6px;padding:6px 12px;background:#fff;border-bottom:1px solid var(--wa-line);overflow-x:auto;
+  display:flex;gap:6px;padding:6px 12px;background:var(--card-bg);border-bottom:1px solid var(--wa-line);overflow-x:auto;
 }
 .ftab{
   padding:4px 12px;border-radius:16px;font-size:.78rem;font-weight:600;color:var(--wa-mute);background:var(--wa-sidebar);transition:all .15s;white-space:nowrap;
 }
-.ftab.on{background:#dbeafe;color:var(--wa-teal)}
+.ftab.on{background:var(--wa-bubble-me);color:var(--wa-teal)}
 
 /* Sidebar Panes */
-.side-pane{flex:1;overflow-y:auto;display:flex;flex-direction:column;min-height:0;background:#fff}
+.side-pane{flex:1;overflow-y:auto;display:flex;flex-direction:column;min-height:0;background:var(--card-bg)}
 
 /* Chats list */
 #chats-list{list-style:none}
 #chats-list li{
-  display:flex;align-items:center;gap:12px;padding:11px 16px;cursor:pointer;border-bottom:1px solid #f8fafc;transition:background .12s;position:relative;
+  display:flex;align-items:center;gap:12px;padding:11px 16px;cursor:pointer;border-bottom:1px solid var(--wa-line);transition:background .12s;position:relative;
 }
-#chats-list li:hover{background:#f1f5f9}
-#chats-list li.active{background:#e0f2fe}
+#chats-list li:hover{background:rgba(0,132,255,.05)}
+#chats-list li.active{background:rgba(0,132,255,.12)}
 .chat-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
 .chat-top-row{display:flex;justify-content:space-between;align-items:baseline}
 .chat-name{font-weight:600;font-size:.92rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--wa-text);display:flex;align-items:center;gap:4px}
@@ -200,7 +231,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .my-status-card{
   display:flex;align-items:center;gap:12px;padding:8px;border-radius:12px;cursor:pointer;transition:background .12s;
 }
-.my-status-card:hover{background:#f8fafc}
+.my-status-card:hover{background:rgba(0,132,255,.05)}
 .status-ring{
   width:46px;height:46px;border-radius:50%;padding:2px;display:grid;place-items:center;position:relative;flex:none;
   border:2.5px solid var(--wa-teal);
@@ -209,33 +240,34 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .status-ring.add-btn::after{
   content:'+';position:absolute;bottom:0;right:0;width:17px;height:17px;border-radius:50%;background:var(--wa-teal);color:#fff;font-size:1.1rem;display:grid;place-items:center;border:2px solid #fff;line-height:1;font-weight:700;
 }
+[data-theme="dark"] .status-ring.add-btn::after{border-color:#0f172a}
 .status-actions-bar{display:flex;gap:8px;margin-top:10px}
 .btn-status-act{
-  flex:1;padding:8px 12px;border-radius:20px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--wa-sidebar);border:1px solid var(--wa-line);transition:background .15s;
+  flex:1;padding:8px 12px;border-radius:20px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--wa-sidebar);border:1px solid var(--wa-line);transition:background .15s;color:var(--wa-text);
 }
-.btn-status-act:hover{background:#e2e8f0;color:var(--wa-teal)}
+.btn-status-act:hover{background:var(--wa-line);color:var(--wa-teal)}
 .status-list{list-style:none}
 .status-list li{
-  display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;border-bottom:1px solid #f8fafc;transition:background .12s;
+  display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;border-bottom:1px solid var(--wa-line);transition:background .12s;
 }
-.status-list li:hover{background:#f1f5f9}
+.status-list li:hover{background:rgba(0,132,255,.05)}
 
 /* ========================================================
    CHANNELS TAB STYLES
    ======================================================== */
 .channel-banner{
-  padding:14px 16px;background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);border-bottom:1px solid #bfdbfe;display:flex;flex-direction:column;gap:6px;
+  padding:14px 16px;background:linear-gradient(135deg, rgba(0,132,255,.1) 0%, rgba(0,91,181,.1) 100%);border-bottom:1px solid var(--wa-line);display:flex;flex-direction:column;gap:6px;
 }
 .channel-create-btn{
   background:var(--wa-teal);color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;box-shadow:0 2px 6px rgba(0,132,255,.25);
 }
 .channel-list{list-style:none}
 .channel-list li{
-  display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;border-bottom:1px solid #f1f5f9;transition:background .12s;
+  display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--wa-line);transition:background .12s;
 }
-.channel-list li:hover{background:#f8fafc}
+.channel-list li:hover{background:rgba(0,132,255,.05)}
 .channel-btn-follow{
-  padding:5px 14px;border-radius:16px;font-size:.78rem;font-weight:700;border:1px solid var(--wa-teal);color:var(--wa-teal);background:#fff;transition:all .15s;flex:none;
+  padding:5px 14px;border-radius:16px;font-size:.78rem;font-weight:700;border:1px solid var(--wa-teal);color:var(--wa-teal);background:var(--card-bg);transition:all .15s;flex:none;
 }
 .channel-btn-follow.following{background:var(--wa-sidebar);border-color:var(--wa-line);color:var(--wa-mute)}
 
@@ -246,10 +278,10 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   height:100%;
   min-height:0;
   position:relative;
-  background:#edf2f7;
+  background:var(--wa-bg);
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(0,132,255,.03) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(0,91,181,.03) 0%, transparent 25%);
+    radial-gradient(circle at 10% 20%, rgba(0,132,255,.04) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(0,91,181,.04) 0%, transparent 25%);
 }
 
 /* Empty state */
@@ -266,8 +298,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 #no-chat h2{color:var(--wa-text);font-weight:600;font-size:1.75rem;margin-top:4px}
 #no-chat p{font-size:.92rem;line-height:1.55;max-width:480px}
-.no-chat-logo{width:96px;height:96px;border-radius:22px;object-fit:cover;filter:drop-shadow(0 8px 24px rgba(0,132,255,.28))}
-.auth-modal-logo{width:68px;height:68px;border-radius:16px;object-fit:cover;margin:0 auto;filter:drop-shadow(0 4px 14px rgba(0,132,255,.25))}
+.no-chat-logo{width:88px;height:88px;filter:drop-shadow(0 8px 20px rgba(0,132,255,.25))}
 
 /* Chat header */
 #chat-header{
@@ -287,12 +318,13 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .chat-header-status{font-size:.76rem;color:var(--wa-mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chat-header-acts{display:flex;align-items:center;gap:4px}
 .wt-toggle-btn{
-  background:#eff6ff;color:var(--wa-teal);font-weight:600;font-size:.82rem;padding:6px 12px;border-radius:18px;display:flex;align-items:center;gap:5px;border:1px solid #bfdbfe;
+  background:var(--radio-badge-bg);color:var(--wa-teal);font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:18px;display:flex;align-items:center;gap:6px;border:1px solid var(--wa-line);transition:all .15s;
 }
-.wt-toggle-btn:hover{background:#dbeafe}
+.wt-toggle-btn:hover{background:var(--wa-bubble-me);border-color:var(--wa-teal)}
 .wt-toggle-btn.live{background:var(--wa-red);color:#fff;border-color:var(--wa-red);animation:ring 1s infinite}
+@keyframes ring{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 
-/* Live audio reception banner */
+/* Live audio reception banner (Walkie Talkie Speaker Alert) */
 #audio-banner{
   display:none;
   align-items:center;
@@ -320,7 +352,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   min-height:0;
 }
 .msg-date-badge{
-  align-self:center;background:#ffffff;box-shadow:0 1px 2px rgba(15,23,42,.08);border-radius:8px;padding:5px 12px;font-size:.74rem;font-weight:600;color:#64748b;margin:8px 0;
+  align-self:center;background:var(--card-bg);box-shadow:0 1px 2px rgba(15,23,42,.08);border-radius:8px;padding:5px 12px;font-size:.74rem;font-weight:600;color:var(--wa-mute);margin:8px 0;border:1px solid var(--wa-line);
 }
 .msg-row{
   display:flex;gap:8px;max-width:75%;position:relative;animation:fadeIn .15s ease-out;
@@ -335,7 +367,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   line-height:1.42;
   word-break:break-word;
   position:relative;
-  box-shadow:0 1px 1px rgba(15,23,42,.08);
+  box-shadow:0 1px 2px rgba(15,23,42,.08);
   min-width:80px;
 }
 .msg-row.me .msg-bubble{background:var(--wa-bubble-me);border-top-right-radius:0}
@@ -343,7 +375,6 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .msg-sender{
   font-size:.76rem;font-weight:700;color:#e542a3;margin-bottom:2px;display:flex;align-items:center;gap:4px;
 }
-.msg-sender.c1{color:#1f7aec}.msg-sender.c2{color:#07bc0c}.msg-sender.c3{color:#ff8b00}.msg-sender.c4{color:#b339ff}
 .msg-content{color:var(--wa-text)}
 .msg-foot{
   display:flex;align-items:center;justify-content:flex-end;gap:3px;font-size:.68rem;color:var(--wa-mute);margin-top:2px;float:right;margin-left:10px;
@@ -354,6 +385,24 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .tick.read{color:var(--wa-tick-blue)}
 .tick.pending{color:var(--wa-tick-grey);font-size:.7rem}
 
+/* Dedicated Walkie-Talkie Radio Transmission Log Card in Chat */
+.wt-radio-card{
+  background:linear-gradient(135deg, rgba(0,132,255,.15), rgba(0,91,181,.15));
+  border:1px solid var(--wa-teal);
+  border-radius:10px;
+  padding:8px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:210px;
+}
+.wt-radio-icon{
+  width:34px;height:34px;border-radius:50%;background:var(--wa-teal);color:#fff;display:grid;place-items:center;font-size:1.1rem;flex:none;
+}
+.wt-radio-body{flex:1;min-width:0}
+.wt-radio-title{font-size:.82rem;font-weight:700;color:var(--wa-teal);display:flex;align-items:center;gap:4px}
+.wt-radio-sub{font-size:.7rem;color:var(--wa-mute)}
+
 /* Image & document previews */
 .chat-img-preview{
   max-width:100%;max-height:300px;border-radius:8px;object-fit:cover;cursor:pointer;display:block;margin-bottom:4px;transition:opacity .15s;
@@ -362,6 +411,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .chat-doc-card{
   display:flex;align-items:center;gap:10px;padding:8px 10px;background:rgba(0,0,0,.04);border-radius:8px;margin-bottom:4px;min-width:180px;
 }
+[data-theme="dark"] .chat-doc-card{background:rgba(255,255,255,.05)}
 .chat-doc-icon{font-size:1.8rem;line-height:1}
 .chat-doc-info{flex:1;min-width:0;display:flex;flex-direction:column}
 .chat-doc-name{font-weight:600;font-size:.84rem;color:var(--wa-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -371,7 +421,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 .chat-doc-dl:hover{background:rgba(0,132,255,.1)}
 
-/* Voice note player */
+/* Voice note player (Asynchronous WhatsApp-style Voice Memo) */
 .vn-player{display:flex;align-items:center;gap:8px;padding:2px 0}
 .vn-btn{
   width:32px;height:32px;border-radius:50%;background:var(--wa-teal);color:#fff;display:grid;place-items:center;font-size:.88rem;flex:none;
@@ -382,12 +432,12 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 
 /* Attach menu */
 .attach-menu{
-  position:absolute;left:20px;bottom:70px;background:#fff;border-radius:16px;box-shadow:0 12px 32px rgba(15,23,42,.18);border:1px solid var(--wa-line);padding:10px;display:none;flex-direction:column;gap:4px;z-index:20;animation:popIn .15s ease-out;
+  position:absolute;left:20px;bottom:70px;background:var(--modal-bg);border-radius:16px;box-shadow:0 12px 32px rgba(15,23,42,.18);border:1px solid var(--wa-line);padding:10px;display:none;flex-direction:column;gap:4px;z-index:20;animation:popIn .15s ease-out;
 }
 .attach-menu.show{display:flex}
 @keyframes popIn{from{opacity:0;transform:scale(.9) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .attach-item{
-  display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:10px;cursor:pointer;transition:background .12s;font-size:.88rem;font-weight:500;
+  display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:10px;cursor:pointer;transition:background .12s;font-size:.88rem;font-weight:500;color:var(--wa-text);
 }
 .attach-item:hover{background:var(--wa-sidebar)}
 .attach-icon{
@@ -410,7 +460,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   flex:none;
 }
 .input-bubble{
-  flex:1;background:#fff;border-radius:24px;display:flex;align-items:center;padding:0 12px;height:44px;gap:8px;box-shadow:0 1px 2px rgba(15,23,42,.06);border:1px solid var(--wa-line);
+  flex:1;background:var(--input-bg);border-radius:24px;display:flex;align-items:center;padding:0 12px;height:44px;gap:8px;box-shadow:0 1px 2px rgba(15,23,42,.06);border:1px solid var(--wa-line);
 }
 .input-bubble input{flex:1;border:0;background:none;font-size:.92rem;color:var(--wa-text)}
 .btn-round{
@@ -420,7 +470,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .btn-round.mic-live{background:var(--wa-red);animation:pulse 1s infinite alternate}
 @keyframes pulse{from{box-shadow:0 0 0 0 rgba(239,68,68,.7)}to{box-shadow:0 0 0 14px rgba(239,68,68,0)}}
 
-/* Recording HUD */
+/* Recording HUD (Voice Note Mode) */
 #rec-hud{
   position:absolute;inset:0;background:var(--wa-sidebar);display:none;align-items:center;padding:0 20px;gap:12px;z-index:5;
 }
@@ -432,14 +482,17 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 
 /* Floating PTT Walkie-Talkie Drawer */
 #wt-drawer{
-  position:absolute;bottom:75px;right:20px;width:280px;background:#fff;border-radius:20px;box-shadow:0 16px 40px rgba(15,23,42,.2);border:1px solid var(--wa-line);padding:20px;display:none;flex-direction:column;align-items:center;gap:12px;z-index:30;animation:popIn .2s ease-out;
+  position:absolute;bottom:75px;right:20px;width:310px;background:var(--modal-bg);border-radius:20px;box-shadow:0 16px 40px rgba(15,23,42,.28);border:1px solid var(--wa-line);padding:20px;display:none;flex-direction:column;align-items:center;gap:12px;z-index:30;animation:popIn .2s ease-out;
 }
 #wt-drawer.show{display:flex}
+.radio-channel-tag{
+  background:var(--radio-badge-bg);color:var(--wa-teal);font-size:.76rem;font-weight:700;padding:3px 10px;border-radius:12px;border:1px solid var(--wa-line);letter-spacing:.5px;
+}
 .ptt-dial{
-  width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg, #0084ff 0%, #005bb5 100%);color:#fff;font-weight:800;font-size:1.2rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,132,255,.4), inset 0 2px 4px rgba(255,255,255,.4);display:grid;place-items:center;user-select:none;transition:transform .1s,box-shadow .1s;
+  width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg, #0084ff 0%, #005bb5 100%);color:#fff;font-weight:800;font-size:1.25rem;letter-spacing:1px;box-shadow:0 8px 24px rgba(0,132,255,.4), inset 0 2px 4px rgba(255,255,255,.4);display:grid;place-items:center;user-select:none;transition:transform .1s,box-shadow .1s;
 }
 .ptt-dial:active,.ptt-dial.active{
-  transform:scale(.92);background:var(--wa-red);box-shadow:0 4px 16px rgba(239,68,68,.5);
+  transform:scale(.92);background:var(--wa-red);box-shadow:0 4px 16px rgba(239,68,68,.6);
 }
 .drawer-close{position:absolute;top:10px;right:14px;color:var(--wa-mute);font-size:1.2rem}
 
@@ -536,7 +589,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 .modal-overlay.show{display:grid}
 .modal-card{
-  background:#fff;border-radius:18px;width:min(440px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 48px rgba(15,23,42,.28);overflow:hidden;
+  background:var(--modal-bg);border-radius:18px;width:min(460px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 48px rgba(15,23,42,.28);overflow:hidden;border:1px solid var(--wa-line);
 }
 .modal-head{
   height:58px;background:linear-gradient(135deg, #0084ff 0%, #005bb5 100%);color:#fff;display:flex;align-items:center;padding:0 18px;gap:12px;font-weight:600;font-size:1.05rem;flex:none;
@@ -545,10 +598,10 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   padding:20px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;
 }
 .modal-foot{
-  padding:14px 22px;background:#f8fafc;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--wa-line);
+  padding:14px 22px;background:var(--wa-sidebar);display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--wa-line);
 }
 .input-field{
-  width:100%;border:1px solid var(--wa-line);border-radius:10px;padding:11px 14px;font-size:.92rem;background:#fff;transition:border-color .15s;
+  width:100%;border:1px solid var(--wa-line);border-radius:10px;padding:11px 14px;font-size:.92rem;background:var(--input-bg);color:var(--wa-text);transition:border-color .15s;
 }
 .input-field:focus{border-color:var(--wa-teal)}
 .btn-primary{
@@ -556,21 +609,40 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 .btn-primary:hover{background:#0073e6}
 .btn-secondary{
-  background:#fff;color:var(--wa-text);border:1px solid var(--wa-line);padding:10px 18px;border-radius:24px;font-weight:600;font-size:.9rem;
+  background:var(--card-bg);color:var(--wa-text);border:1px solid var(--wa-line);padding:10px 18px;border-radius:24px;font-weight:600;font-size:.9rem;
 }
 .btn-danger{
   background:#fee2e2;color:var(--wa-red);border:1px solid #fecaca;padding:9px 16px;border-radius:20px;font-weight:600;font-size:.85rem;
 }
+[data-theme="dark"] .btn-danger{background:#450a0a;border-color:#7f1d1d;color:#fca5a5}
+
+/* Theme picker group buttons */
+.theme-switch-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px;
+}
+.theme-btn{
+  border:1.5px solid var(--wa-line);background:var(--wa-sidebar);color:var(--wa-text);padding:10px 8px;border-radius:12px;font-size:.82rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s;
+}
+.theme-btn.active{
+  border-color:var(--wa-teal);background:var(--wa-bubble-me);color:var(--wa-teal);
+}
+
+/* User Guide / Manual styles */
+.guide-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;border-bottom:1px solid var(--wa-line)}
+.gtab{padding:6px 12px;border-radius:16px;font-size:.78rem;font-weight:700;background:var(--wa-sidebar);color:var(--wa-mute);white-space:nowrap}
+.gtab.on{background:var(--wa-teal);color:#fff}
+.guide-content-pane{display:flex;flex-direction:column;gap:12px;font-size:.88rem;line-height:1.55;color:var(--wa-text)}
+.guide-feature-box{background:var(--wa-sidebar);border:1px solid var(--wa-line);border-radius:12px;padding:12px 14px}
 
 /* Suggestion dropdown list */
 .suggestions-box{
-  border:1px solid var(--wa-line);border-radius:10px;background:#fff;max-height:160px;overflow-y:auto;list-style:none;box-shadow:0 4px 12px rgba(15,23,42,.08);margin-top:-6px;display:none;
+  border:1px solid var(--wa-line);border-radius:10px;background:var(--modal-bg);max-height:160px;overflow-y:auto;list-style:none;box-shadow:0 4px 12px rgba(15,23,42,.08);margin-top:-6px;display:none;
 }
 .suggestions-box.show{display:block}
 .suggestions-box li{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid #f1f5f9;cursor:pointer;transition:background .1s;
+  display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--wa-line);cursor:pointer;transition:background .1s;
 }
-.suggestions-box li:hover{background:#f0f7ff}
+.suggestions-box li:hover{background:rgba(0,132,255,.06)}
 
 /* Real-time simulated push banner */
 #push-otp-banner{
@@ -610,16 +682,30 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
  <!-- SIDEBAR -->
  <aside id="side">
   <div class="side-header">
-   <!-- Website Logo & Title -->
-   <div class="brand-box" id="btn-brand-home" title="LinkUp Web - Home">
-    <img class="app-logo-img" src="logo.png" alt="LinkUp Logo">
-    <span class="brand-title">LinkUp</span>
+   <!-- Website Logo & Title (Original SVG) -->
+   <div class="brand-box" id="btn-brand-home" title="Walkie Talkie Web - Home">
+    <svg class="app-logo-svg" viewBox="0 0 64 64" fill="none">
+     <defs>
+      <linearGradient id="logoG" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+       <stop stop-color="#0084ff"/>
+       <stop offset="1" stop-color="#005bb5"/>
+      </linearGradient>
+     </defs>
+     <rect width="64" height="64" rx="16" fill="url(#logoG)"/>
+     <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
+     <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
+     <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
+     <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
+    </svg>
+    <span class="brand-title">WalkieTalkie</span>
    </div>
 
    <div class="my-av-box" id="my-av-btn" title="View & Edit Profile">
     <div class="av" id="my-av"><span id="my-av-letter">U</span></div>
    </div>
 
+   <button class="icon-btn" id="btn-user-manual" title="User Manual & Help">📖</button>
+   <button class="icon-btn" id="btn-test-radio" title="Test Radio Dispatcher Voice">📻</button>
    <button class="icon-btn" id="btn-admin-panel" title="Admin Control" hidden>🛡️</button>
    <button class="icon-btn" id="btn-new-group" title="New Group">👥</button>
    <button class="icon-btn" id="btn-add-chat" title="Add Contact / Friend">➕</button>
@@ -688,7 +774,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   <!-- PANE 3: CHANNELS -->
   <div class="side-pane" id="pane-channels" style="display:none">
    <div class="channel-banner">
-    <div style="font-weight:700;font-size:.95rem;color:var(--wa-teal)">📢 WhatsApp Channels</div>
+    <div style="font-weight:700;font-size:.95rem;color:var(--wa-teal)">📢 WalkieTalkie Channels</div>
     <div style="font-size:.78rem;color:var(--wa-mute)">Stay updated on topics, announcements, and news.</div>
     <button class="channel-create-btn" id="btn-create-channel-open" style="margin-top:4px">
      <span>➕</span> <span>New Channel</span>
@@ -713,10 +799,25 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 
   <!-- No chat selected empty state -->
   <div id="no-chat">
-   <img class="no-chat-logo" src="logo.png" alt="LinkUp Logo">
-   <h2>LinkUp Web</h2>
-   <p>Send instant voice notes, text messages, photos, files, and make calls in high definition. Stay connected with friends, groups, and channels.</p>
-   <button class="btn-primary" id="btn-start-chat" style="margin-top:10px">Start a New Chat</button>
+   <svg class="no-chat-logo" viewBox="0 0 64 64" fill="none">
+    <defs>
+     <linearGradient id="logoLg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0084ff"/>
+      <stop offset="1" stop-color="#005bb5"/>
+     </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="16" fill="url(#logoLg)"/>
+    <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
+    <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
+   </svg>
+   <h2>WalkieTalkie Web</h2>
+   <p>Real-time live push-to-talk radio, instant voice notes, HD video calls, and encrypted messaging. Stay connected effortlessly.</p>
+   <div style="display:flex;gap:10px;margin-top:10px">
+    <button class="btn-primary" id="btn-start-chat">Start a New Chat</button>
+    <button class="btn-secondary" onclick="openModal('modal-user-guide')">📖 User Manual</button>
+   </div>
   </div>
 
   <!-- Active conversation pane -->
@@ -731,19 +832,20 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     <div class="chat-header-acts" id="chat-header-acts">
      <button class="icon-btn" id="btn-voice-call" title="Voice call">📞</button>
      <button class="icon-btn" id="btn-video-call" title="Video call">📹</button>
-     <button class="wt-toggle-btn" id="btn-wt-toggle" title="Open Walkie Talkie dial">
-      <span>📻</span> <span id="wt-btn-txt">Talk</span>
+     <!-- Distinct Walkie-Talkie Radio Toggle Button -->
+     <button class="wt-toggle-btn" id="btn-wt-toggle" title="Open Real-time Walkie Talkie Radio">
+      <span>📻</span> <span id="wt-btn-txt">Radio PTT</span>
      </button>
      <button class="icon-btn" id="btn-chat-menu" title="Info">⋮</button>
     </div>
    </header>
 
-   <!-- Live audio reception banner -->
+   <!-- Live audio reception banner (Walkie Talkie Speaker Transmission) -->
    <div id="audio-banner">
     <div class="av" id="banner-av" style="width:32px;height:32px;font-size:.8rem"><span>?</span></div>
     <div style="flex:1;min-width:0">
-     <div id="banner-name" style="font-weight:700;font-size:.88rem">Speaking...</div>
-     <div style="font-size:.76rem;opacity:.9">Transmitting live audio</div>
+     <div id="banner-name" style="font-weight:700;font-size:.88rem">Radio Transmission...</div>
+     <div style="font-size:.76rem;opacity:.9">📻 Live Walkie-Talkie broadcast playing on speaker</div>
     </div>
     <div class="eq-bars"><i></i><i></i><i></i><i></i></div>
    </div>
@@ -767,27 +869,28 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     </button>
    </div>
 
-   <!-- Chat input bar -->
+   <!-- Chat input bar (Voice Note & Text feature) -->
    <div id="chat-input-bar">
     <div class="input-bubble">
      <button type="button" class="icon-btn" id="btn-emoji" title="Emoji" style="width:28px;height:28px;font-size:1.15rem">😊</button>
      <button type="button" class="icon-btn" id="btn-attach" title="Attach file or photo" style="width:28px;height:28px;font-size:1.15rem">📎</button>
-     <input id="chat-input" placeholder="Type a message" autocomplete="off" maxlength="1000">
+     <input id="chat-input" placeholder="Type a message..." autocomplete="off" maxlength="1000">
     </div>
-    <button type="button" class="btn-round" id="btn-mic-send" title="Hold to record or tap to send">
+    <!-- Separate Voice Note button (recorded audio message) -->
+    <button type="button" class="btn-round" id="btn-mic-send" title="Hold to record Voice Note or tap to send text">
      <span id="mic-send-icon">🎙️</span>
     </button>
 
-    <!-- Recording HUD overlay -->
+    <!-- Recording HUD overlay for Voice Notes -->
     <div id="rec-hud">
      <div class="rec-dot"></div>
      <div class="rec-time" id="rec-timer">0:00</div>
      <div class="rec-slide">‹ Slide left to cancel</div>
-     <span style="font-size:.82rem;font-weight:600;color:var(--wa-red)">RELEASE TO SEND</span>
+     <span style="font-size:.8rem;font-weight:700;color:var(--wa-red)">VOICE NOTE</span>
     </div>
    </div>
 
-   <!-- Channel follower reaction bar (shown when viewing a channel you follow) -->
+   <!-- Channel follower reaction bar -->
    <div id="channel-react-bar" style="display:none;background:var(--wa-sidebar);padding:10px 16px;border-top:1px solid var(--wa-line);align-items:center;justify-content:space-between">
     <div style="font-size:.84rem;color:var(--wa-mute);display:flex;align-items:center;gap:6px">
      <span>📢</span> <span>Broadcast channel (Read only)</span>
@@ -801,13 +904,26 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     </div>
    </div>
 
-   <!-- Floating Walkie Talkie PTT Drawer -->
+   <!-- Floating Walkie Talkie Live PTT Drawer (Dedicated Real-time Radio) -->
    <div id="wt-drawer">
     <button class="drawer-close" id="btn-close-wt">✕</button>
-    <div style="font-weight:700;font-size:.92rem;color:var(--wa-teal)">Walkie Talkie Mode</div>
-    <div style="font-size:.78rem;color:var(--wa-mute);text-align:center" id="wt-drawer-status">Hold button to speak live</div>
-    <button class="ptt-dial" id="wt-ptt-btn">TALK</button>
-    <div style="font-size:.72rem;color:var(--wa-mute)">Audio broadcasts instantly to this chat</div>
+    <div style="display:flex;align-items:center;gap:8px">
+     <span style="font-size:1.2rem">📻</span>
+     <span style="font-weight:700;font-size:1rem;color:var(--wa-teal)">Walkie-Talkie Radio</span>
+    </div>
+    <div class="radio-channel-tag" id="wt-channel-label">FREQ: 462.5625 MHz · CH-01</div>
+    <div style="font-size:.78rem;color:var(--wa-mute);text-align:center" id="wt-drawer-status">
+     Hold button to transmit live audio through peer's speaker
+    </div>
+    <!-- Big Real-time PTT Dial -->
+    <button class="ptt-dial" id="wt-ptt-btn">PTT TALK</button>
+    <div style="font-size:.72rem;color:var(--wa-mute);text-align:center">
+     Tip: You can also hold <b>[Spacebar]</b> while in chat to speak live!
+    </div>
+    <div style="display:flex;gap:8px;width:100%;margin-top:4px">
+     <button type="button" class="btn-secondary" id="btn-drawer-test-voice" style="flex:1;font-size:.75rem;padding:6px 10px">🔊 Test Radio Voice</button>
+     <button type="button" class="btn-secondary" onclick="openModal('modal-user-guide')" style="flex:1;font-size:.75rem;padding:6px 10px">📖 Manual</button>
+    </div>
    </div>
   </div>
  </main>
@@ -823,7 +939,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 </div>
 
 <!-- ========================================================
-     WHATSAPP VOICE & VIDEO CALL OVERLAY
+     VOICE & VIDEO CALL OVERLAY
      ======================================================== -->
 <div id="call-overlay">
  <div class="call-top-bar">
@@ -883,6 +999,95 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 </div>
 
 <!-- ========================================================
+     MODAL: USER MANUAL & HELP GUIDE (FOR NEW USERS)
+     ======================================================== -->
+<div class="modal-overlay" id="modal-user-guide">
+ <div class="modal-card" style="width:min(540px,100%)">
+  <div class="modal-head">
+   <button class="icon-btn" style="color:#fff;margin-left:-8px" onclick="closeModal('modal-user-guide')">✕</button>
+   <span>📖 WalkieTalkie User Manual</span>
+  </div>
+  <div class="modal-body">
+   <div class="guide-tabs">
+    <button class="gtab on" data-gtab="walkie">📻 Walkie-Talkie</button>
+    <button class="gtab" data-gtab="voicenote">🎙️ Voice Notes</button>
+    <button class="gtab" data-gtab="chatting">💬 Chat & Media</button>
+    <button class="gtab" data-gtab="calling">📞 Calls</button>
+    <button class="gtab" data-gtab="settings">⚙️ Themes & ID</button>
+   </div>
+
+   <!-- TAB 1: Walkie Talkie Real-Time Mode -->
+   <div class="guide-content-pane" id="gtab-walkie">
+    <div class="guide-feature-box">
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">📻 Real-time Walkie Talkie (Live PTT)</h4>
+     <p style="margin-top:6px">Unlike standard audio files, <b>Walkie-Talkie Mode</b> broadcasts live audio straight through your friend's speakers in real time!</p>
+    </div>
+    <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+     <li><b>How to Talk:</b> Tap the <b>📻 Radio PTT</b> button in the top right of any chat to open the dial.</li>
+     <li><b>Press & Hold:</b> Hold the large circular <b>PTT TALK</b> button (or hold the <b>[Spacebar]</b> key) while speaking.</li>
+     <li><b>Radio Sound Effects:</b> You'll hear realistic radio squelch static when opening the frequency, and a <b>Roger Beep</b> when you release the button.</li>
+     <li><b>Startup Voice:</b> Every time you open the app, your radio dispatcher announces that your frequency is active and standing by!</li>
+    </ul>
+   </div>
+
+   <!-- TAB 2: Voice Notes -->
+   <div class="guide-content-pane" id="gtab-voicenote" style="display:none">
+    <div class="guide-feature-box">
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">🎙️ Voice Notes (Recorded Audio Messages)</h4>
+     <p style="margin-top:6px">Voice notes are recorded audio messages saved directly into the chat timeline so your contact can play them back whenever convenient.</p>
+    </div>
+    <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+     <li><b>Recording:</b> Press and hold the 🎙️ mic button on the bottom right of the input bar.</li>
+     <li><b>Cancel Recording:</b> While holding, slide your finger or mouse to the left to cancel without sending.</li>
+     <li><b>Playback:</b> Tap the <b>▶ Play</b> button on any voice note bubble to listen with animated wave bars.</li>
+    </ul>
+   </div>
+
+   <!-- TAB 3: Chatting & Media -->
+   <div class="guide-content-pane" id="gtab-chatting" style="display:none">
+    <div class="guide-feature-box">
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">💬 Adding Friends & Sharing Media</h4>
+     <p style="margin-top:6px">Exchange messages, photos, camera snaps, and documents directly peer-to-peer.</p>
+    </div>
+    <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+     <li><b>Add Contact:</b> Click <b>➕</b> in the header and enter a user's Walkie Talkie ID (e.g. <code>ECHO00</code> to test).</li>
+     <li><b>Send Files & Photos:</b> Tap the <b>📎</b> paperclip to attach documents, photos, or use your camera. You can also paste or drag and drop files directly.</li>
+     <li><b>Ticks:</b> 🕒 = Sending, ✓ = Sent to network, ✓✓ = Delivered, <span style="color:var(--wa-teal);font-weight:700">✓✓</span> = Read.</li>
+    </ul>
+   </div>
+
+   <!-- TAB 4: Calling -->
+   <div class="guide-content-pane" id="gtab-calling" style="display:none">
+    <div class="guide-feature-box">
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">📞 HD Voice & Video Calls</h4>
+     <p style="margin-top:6px">Direct peer-to-peer audio and video calls with encrypted WebRTC streams.</p>
+    </div>
+    <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+     <li><b>Start Call:</b> Tap 📞 for voice call or 📹 for video call in the top chat header.</li>
+     <li><b>Controls:</b> Toggle camera on/off, mute microphone, or minimize call to picture-in-picture.</li>
+    </ul>
+   </div>
+
+   <!-- TAB 5: Themes & Settings -->
+   <div class="guide-content-pane" id="gtab-settings" style="display:none">
+    <div class="guide-feature-box">
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">⚙️ Customization, Themes & Logout</h4>
+     <p style="margin-top:6px">Customize your profile, personalize your theme, or switch users.</p>
+    </div>
+    <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+     <li><b>Themes:</b> Open Settings ⚙️ to switch between ☀️ <b>Light</b>, 🌙 <b>Dark</b>, or 🖥️ <b>System</b> theme.</li>
+     <li><b>Custom ID:</b> Set a personalized, memorable Walkie Talkie ID anytime in Settings.</li>
+     <li><b>Sign Out:</b> Use the <b>Log Out</b> button in Settings to safely disconnect and log in with another account.</li>
+    </ul>
+   </div>
+  </div>
+  <div class="modal-foot">
+   <button type="button" class="btn-primary" onclick="closeModal('modal-user-guide')">Got It!</button>
+  </div>
+ </div>
+</div>
+
+<!-- ========================================================
      MODAL: POST TEXT STATUS
      ======================================================== -->
 <div class="modal-overlay" id="modal-text-status">
@@ -921,7 +1126,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <span>Post Photo Status</span>
   </div>
   <form id="form-photo-status" class="modal-body">
-   <div id="status-photo-preview-wrap" style="width:100%;height:200px;background:#f1f5f9;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px dashed var(--wa-line);cursor:pointer">
+   <div id="status-photo-preview-wrap" style="width:100%;height:200px;background:var(--wa-sidebar);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px dashed var(--wa-line);cursor:pointer">
     <img id="status-photo-preview" src="" style="width:100%;height:100%;object-fit:cover;display:none">
     <div id="status-photo-prompt" style="text-align:center;color:var(--wa-mute);font-size:.88rem">
      <div style="font-size:2rem">📷</div>
@@ -1022,7 +1227,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <!-- Live Auto-Suggestions dropdown list -->
    <ul class="suggestions-box" id="friend-suggestions-list"></ul>
 
-   <label style="font-size:.84rem;color:var(--wa-mute)">Custom Name (only visible to you on this device):</label>
+   <label style="font-size:.84rem;color:var(--wa-mute);margin-top:4px">Custom Name (only visible to you on this device):</label>
    <input class="input-field" id="input-friend-name" placeholder="Contact Nickname (optional)" maxlength="30" autocomplete="off">
 
    <div class="modal-foot" style="margin:8px -22px -20px;padding-bottom:14px">
@@ -1098,13 +1303,13 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 </div>
 
 <!-- ========================================================
-     MODAL: MY PROFILE & SETTINGS
+     MODAL: MY PROFILE & SETTINGS (WITH THEMES & LOGOUT)
      ======================================================== -->
 <div class="modal-overlay" id="modal-settings">
  <div class="modal-card">
   <div class="modal-head">
    <button class="icon-btn" style="color:#fff;margin-left:-8px" onclick="closeModal('modal-settings')">✕</button>
-   <span>My Profile & Account</span>
+   <span>My Profile & Settings</span>
   </div>
   <div class="modal-body" style="align-items:center;text-align:center">
    <div class="av lg my-av-box" id="settings-av-box" title="Click to change profile photo">
@@ -1114,16 +1319,34 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     <button class="btn-secondary" id="btn-change-my-photo" style="font-size:.8rem;padding:6px 14px">Change Photo</button>
     <button class="btn-danger" id="btn-remove-my-photo" style="font-size:.8rem;padding:6px 14px" hidden>Remove</button>
    </div>
-   <div style="width:100%;text-align:left;display:flex;flex-direction:column;gap:12px;margin-top:10px">
+   
+   <div style="width:100%;text-align:left;display:flex;flex-direction:column;gap:14px;margin-top:10px">
+    <!-- Theme Selection (Dark / Light / System) -->
     <div>
-     <label style="font-size:.8rem;color:var(--wa-mute)">Your Display Name:</label>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Appearance Theme:</label>
+     <div class="theme-switch-row">
+      <button type="button" class="theme-btn" id="theme-btn-light" data-theme="light">
+       <span>☀️</span> <span>Light</span>
+      </button>
+      <button type="button" class="theme-btn" id="theme-btn-dark" data-theme="dark">
+       <span>🌙</span> <span>Dark</span>
+      </button>
+      <button type="button" class="theme-btn" id="theme-btn-system" data-theme="system">
+       <span>🖥️</span> <span>System</span>
+      </button>
+     </div>
+    </div>
+
+    <div>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Your Display Name:</label>
      <div style="display:flex;gap:6px;margin-top:4px">
       <input class="input-field" id="settings-name-input" maxlength="24">
       <button class="btn-primary" id="btn-save-my-name" style="padding:6px 16px">Save</button>
      </div>
     </div>
+
     <div>
-     <label style="font-size:.8rem;color:var(--wa-mute)">Account Type:</label>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Account Type:</label>
      <div style="display:flex;gap:10px;margin-top:4px">
       <select class="input-field" id="settings-account-type">
        <option value="personal">👤 Personal Account</option>
@@ -1131,16 +1354,36 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
       </select>
      </div>
     </div>
+
     <div>
-     <label style="font-size:.8rem;color:var(--wa-mute)">Your Walkie Talkie ID:</label>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Your Walkie Talkie ID:</label>
      <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
-      <b id="settings-my-id" style="font-size:.92rem;letter-spacing:1px;background:var(--wa-sidebar);padding:8px 12px;border-radius:8px;flex:1">------</b>
+      <b id="settings-my-id" style="font-size:.92rem;letter-spacing:1px;background:var(--wa-sidebar);padding:8px 12px;border-radius:8px;flex:1;border:1px solid var(--wa-line)">------</b>
       <button class="btn-secondary" id="btn-copy-my-id">Copy ID</button>
       <button class="btn-secondary" id="btn-set-custom-id" title="Set a custom ID">Custom ID</button>
      </div>
     </div>
+
+    <div style="display:flex;gap:8px">
+     <button type="button" class="btn-secondary" id="btn-settings-manual" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px">
+      <span>📖</span> <span>Open User Manual</span>
+     </button>
+     <button type="button" class="btn-secondary" id="btn-settings-test-radio" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px">
+      <span>🔊</span> <span>Test Radio Voice</span>
+     </button>
+    </div>
+
     <div style="padding:10px;border-radius:10px;background:#f0fdf4;border:1px solid #bbf7d0;font-size:.8rem;color:#166534;display:flex;align-items:center;gap:6px">
      <span>✓</span> <span id="settings-auth-status">Verified Account</span>
+    </div>
+
+    <!-- Prominent Logout Section -->
+    <div style="border-top:1px solid var(--wa-line);padding-top:14px;display:flex;justify-content:space-between;align-items:center">
+     <div>
+      <div style="font-weight:700;font-size:.88rem;color:var(--wa-red)">Sign Out / Logout</div>
+      <div style="font-size:.74rem;color:var(--wa-mute)">Disconnect your ID and switch account</div>
+     </div>
+     <button type="button" class="btn-danger" id="btn-logout" style="padding:8px 18px;font-weight:700">Logout</button>
     </div>
    </div>
   </div>
@@ -1148,17 +1391,22 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 </div>
 
 <!-- ========================================================
-     MODAL: WHATSAPP-STYLE REGISTRATION & OTP VERIFICATION
+     MODAL: REGISTRATION & OTP VERIFICATION
      ======================================================== -->
 <div class="modal-overlay" id="modal-auth">
  <div class="modal-card">
   <div class="modal-head" style="justify-content:center">
-   <span>Welcome to LinkUp</span>
+   <span>Welcome to WalkieTalkie</span>
   </div>
 
   <!-- STEP 1: Account Creation & Details -->
   <form id="form-auth-step1" class="modal-body" style="text-align:center">
-   <img class="auth-modal-logo" src="logo.png" alt="LinkUp Logo">
+   <svg class="no-chat-logo" style="width:64px;height:64px;margin:0 auto" viewBox="0 0 64 64" fill="none">
+    <rect width="64" height="64" rx="16" fill="url(#logoLg)"/>
+    <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
+    <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
+   </svg>
    <h3 style="font-size:1.15rem;font-weight:700">Create Your Account</h3>
    <p style="font-size:.84rem;color:var(--wa-mute);margin-top:-6px">
     Choose your username and account type with secure mobile/email verification.
@@ -1167,7 +1415,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <div style="text-align:left;display:flex;flex-direction:column;gap:12px;margin-top:6px">
     <div>
      <label style="font-size:.8rem;font-weight:600;color:var(--wa-text)">Unique Username:</label>
-     <input class="input-field" id="auth-name" placeholder="e.g. Alex, Maya, TechCorp" required maxlength="24" autocomplete="off">
+     <input class="input-field" id="auth-name" placeholder="e.g. Alex, Maya, BravoLeader" required maxlength="24" autocomplete="off">
      <div id="auth-name-error" style="font-size:.75rem;font-weight:600;color:var(--wa-red);margin-top:3px;display:none">
       ❌ Username already taken! Please pick a different name.
      </div>
@@ -1241,7 +1489,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <span>🛡️ Admin Command Center</span>
   </div>
   <div class="modal-body">
-   <div style="background:#f8fafc;padding:10px 14px;border-radius:10px;font-size:.85rem">
+   <div style="background:var(--wa-sidebar);padding:10px 14px;border-radius:10px;font-size:.85rem;border:1px solid var(--wa-line)">
     <b>Admin Status:</b> <span style="color:var(--wa-teal)">Active (ID 20262026)</span>
    </div>
    <div style="display:flex;flex-direction:column;gap:8px">
@@ -1267,7 +1515,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 <div id="push-otp-banner">
  <span>📲</span>
  <div>
-  <div style="font-size:.78rem;color:#94a3b8">LinkUp Security Verification</div>
+  <div style="font-size:.78rem;color:#94a3b8">WalkieTalkie Security Verification</div>
   <div style="font-size:.9rem">Your 6-digit code is: <span class="otp-pill" id="banner-otp-code">---</span></div>
  </div>
 </div>
@@ -1333,6 +1581,146 @@ function formatFileSize(bytes){
   return (bytes/1048576).toFixed(1)+' MB';
 }
 
+/* ========================================================
+   THEME MANAGER (DARK / LIGHT / SYSTEM)
+   ======================================================== */
+let currentTheme=ls.get('wt_theme','system');
+
+function applyTheme(theme){
+  currentTheme=theme;
+  ls.set('wt_theme',theme);
+
+  let activeTheme=theme;
+  if(theme==='system'){
+    activeTheme=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  }
+
+  document.documentElement.setAttribute('data-theme',activeTheme);
+
+  $$('.theme-btn').forEach(b=>{
+    b.classList.toggle('active',b.dataset.theme===theme);
+  });
+}
+
+// Initial theme application
+applyTheme(currentTheme);
+
+if(window.matchMedia){
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{
+    if(currentTheme==='system')applyTheme('system');
+  });
+}
+
+$$('.theme-btn').forEach(btn=>{
+  btn.onclick=()=>applyTheme(btn.dataset.theme);
+});
+
+/* ========================================================
+   AUDIO & REALISTIC WALKIE-TALKIE RADIO SOUNDS
+   ======================================================== */
+let actx;
+function getAudioContext(){
+  try{
+    actx=actx||new(window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    return actx;
+  }catch(e){return null}
+}
+
+function beep(f,d,delay=0,type='sine',v=.07){
+  try{
+    const ctx=getAudioContext();
+    if(!ctx)return;
+    const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;
+    o.connect(g);g.connect(ctx.destination);const t=ctx.currentTime+delay;o.start(t);o.stop(t+d);
+  }catch(e){}
+}
+
+/* Radio squelch static burst (authentic walkie-talkie opening sound) */
+function squelch(){
+  try{
+    const ctx=getAudioContext();
+    if(!ctx)return;
+    // White noise static burst
+    const bufferSize=ctx.sampleRate*0.08;
+    const buffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate);
+    const data=buffer.getChannelData(0);
+    for(let i=0;i<bufferSize;i++)data[i]=Math.random()*2-1;
+    const noise=ctx.createBufferSource();
+    noise.buffer=buffer;
+    const gain=ctx.createGain();
+    gain.gain.setValueAtTime(0.04,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.08);
+    noise.connect(gain);gain.connect(ctx.destination);
+    noise.start();
+    // Dual tone squelch
+    beep(720,.05,0,'sawtooth',.04);
+    beep(1150,.03,.02,'square',.03);
+  }catch(e){}
+}
+
+/* Classic Roger Beep upon releasing PTT */
+function rogerBeep(){
+  beep(1850,.08,0,'sine',.06);
+  beep(1400,.06,.05,'sine',.06);
+}
+
+const playSentChime=()=>beep(900,.04,0,'sine',.04);
+const playRecvChime=()=>{beep(800,.05,0,'sine',.05);beep(1200,.08,.06,'sine',.05)};
+
+let ringOscInterval=null;
+function startRingtone(){
+  stopRingtone();
+  ringOscInterval=setInterval(()=>{
+    beep(440,.3,0,'sine',.08);beep(480,.3,.05,'sine',.08);
+  },2000);
+}
+function stopRingtone(){
+  if(ringOscInterval){clearInterval(ringOscInterval);ringOscInterval=null}
+}
+
+/* ========================================================
+   PAGE OPEN: WALKIE-TALKIE VOICE ANNOUNCEMENT
+   ======================================================== */
+let radioVoiceSpoken=false;
+function speakWalkieTalkieWelcome(){
+  if(radioVoiceSpoken)return;
+  radioVoiceSpoken=true;
+
+  squelch();
+
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const uname=me?me.name:'Unit';
+    const text=`Walkie Talkie online. Frequency open for ${uname}. Standing by. Over.`;
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.rate=1.03;
+    utt.pitch=0.92;
+    utt.volume=1.0;
+
+    const voices=window.speechSynthesis.getVoices();
+    const engVoice=voices.find(v=>v.lang.startsWith('en')&&(v.name.includes('Natural')||v.name.includes('Google')||v.name.includes('David')||v.name.includes('English')));
+    if(engVoice)utt.voice=engVoice;
+
+    utt.onend=()=>setTimeout(rogerBeep,40);
+    window.speechSynthesis.speak(utt);
+  }
+
+  toast('📻 Walkie-Talkie Frequency Active. Standing by, Over!');
+}
+
+// Speak once page is ready
+setTimeout(speakWalkieTalkieWelcome,600);
+// Also unlock on first user gesture if browser autoplay blocked audio
+['pointerdown','keydown','click'].forEach(evt=>{
+  window.addEventListener(evt,()=>{if(!radioVoiceSpoken)speakWalkieTalkieWelcome()},{once:true});
+});
+
+$('#btn-test-radio').onclick=()=>{
+  radioVoiceSpoken=false;
+  speakWalkieTalkieWelcome();
+};
+
 /* ---------- State ---------- */
 let me=ls.get('wt_me',null);
 let registeredAccounts=ls.get('wt_accounts',[
@@ -1350,7 +1738,7 @@ let channels=ls.get('wt_channels',{})||{
     id:'TECH-UPDATES',name:'Tech & Gadgets',category:'Technology & Code',desc:'Daily tech news, product launches & tips',owner:ECHO,followers:[ECHO],photo:''
   },
   'OFFICIAL-ANNOUNCE':{
-    id:'OFFICIAL-ANNOUNCE',name:'LinkUp Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
+    id:'OFFICIAL-ANNOUNCE',name:'WalkieTalkie Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
   }
 };
 
@@ -1382,6 +1770,12 @@ function isAdmin(){
 /* Peer networking */
 let peer=null,conns={},tried={};
 let playingAud=null,toastT=null;
+
+/* Toast helper */
+function toast(t){
+  const e=$('#toast');e.textContent=t;e.style.display='block';
+  clearTimeout(toastT);toastT=setTimeout(()=>e.style.display='none',3200);
+}
 
 /* Image compressor */
 function compressImage(file, maxDim=160, quality=0.82){
@@ -1484,35 +1878,6 @@ function isContactOnline(id){
   return !!(conns[id]&&conns[id].open&&Date.now()-conns[id].pong<15000);
 }
 
-/* Audio & Toast */
-function toast(t){
-  const e=$('#toast');e.textContent=t;e.style.display='block';
-  clearTimeout(toastT);toastT=setTimeout(()=>e.style.display='none',3200);
-}
-let actx;
-function beep(f,d,delay=0,type='sine',v=.06){
-  try{
-    actx=actx||new(window.AudioContext||window.webkitAudioContext)();
-    if(actx.state==='suspended')actx.resume();
-    const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;
-    o.connect(g);g.connect(actx.destination);const t=actx.currentTime+delay;o.start(t);o.stop(t+d);
-  }catch(e){}
-}
-const playSentChime=()=>beep(900,.04,0,'sine',.04);
-const playRecvChime=()=>{beep(800,.05,0,'sine',.05);beep(1200,.08,.06,'sine',.05)};
-const squelch=()=>beep(650,.07,0,'square',.03);
-
-let ringOscInterval=null;
-function startRingtone(){
-  stopRingtone();
-  ringOscInterval=setInterval(()=>{
-    beep(440,.3,0,'sine',.08);beep(480,.3,.05,'sine',.08);
-  },2000);
-}
-function stopRingtone(){
-  if(ringOscInterval){clearInterval(ringOscInterval);ringOscInterval=null}
-}
-
 /* ---------- PeerJS Setup ---------- */
 function startPeer(){
   if(!me||typeof Peer==='undefined')return;
@@ -1590,7 +1955,6 @@ function onData(rid,d){
       if(d.photo!==undefined)contact.photo=d.photo;
       if(d.accountType)contact.accountType=d.accountType;
     }
-    // Update accounts directory
     if(!registeredAccounts.some(a=>a.id===rid)){
       registeredAccounts.push({id:rid,name:d.name||rid,accountType:d.accountType||'personal',verified:true});
     }
@@ -1603,8 +1967,18 @@ function onData(rid,d){
     c.pong=Date.now();
   }else if(d.t==='msg'){
     handleIncomingMessage(rid,d);
-  }else if(d.t==='voice'){
-    handleIncomingVoice(rid,d);
+  }else if(d.t==='voice_note'){
+    // Asynchronous Voice Note received
+    handleIncomingVoiceNote(rid,d);
+  }else if(d.t==='wt_live_start'){
+    // Incoming real-time Walkie Talkie transmission start
+    handleLiveRadioStart(rid,d);
+  }else if(d.t==='wt_live_audio'){
+    // Incoming live Walkie Talkie audio packet
+    handleLiveRadioAudio(rid,d);
+  }else if(d.t==='wt_live_stop'){
+    // Incoming Walkie Talkie transmission end
+    handleLiveRadioStop(rid,d);
   }else if(d.t==='ack'){
     handleAck(d.mid,d.status||'delivered');
   }else if(d.t==='channel_post'){
@@ -1715,7 +2089,10 @@ function handleIncomingMessage(senderId,d){
   refreshUI();
 }
 
-function handleIncomingVoice(senderId,d){
+/* ========================================================
+   FEATURE 1: VOICE NOTES (ASYNC RECORDED AUDIO MESSAGES)
+   ======================================================== */
+function handleIncomingVoiceNote(senderId,d){
   const chatId=d.groupId||senderId;
   const blob=new Blob([d.buf],{type:d.mime});
   const blobUrl=URL.createObjectURL(blob);
@@ -1730,6 +2107,7 @@ function handleIncomingVoice(senderId,d){
     ts:d.ts||Date.now(),
     status:'delivered',
     isVoice:true,
+    isRadio:false,
     groupId:d.groupId||null
   };
   addChatMessage(chatId,msg);
@@ -1740,10 +2118,269 @@ function handleIncomingVoice(senderId,d){
     renderMessages();
   }else{
     sendRaw(senderId,{t:'ack',mid:msg.id,status:'delivered'});
-    toast('🎙️ Voice note from '+displayName(senderId));
+    toast('🎙️ Voice Note from '+displayName(senderId));
   }
   playRecvChime();
   refreshUI();
+}
+
+function sendVoiceNote(blob,dur){
+  if(!activeChatId)return;
+  const mid=uid();
+  const blobUrl=URL.createObjectURL(blob);
+  const isGrp=!!groups[activeChatId];
+
+  const msg={
+    id:mid,
+    from:me.id,
+    name:me.name,
+    photo:me.photo||'',
+    text:'',
+    audioBlobUrl:blobUrl,
+    dur:dur,
+    ts:Date.now(),
+    status:'pending',
+    isVoice:true,
+    isRadio:false,
+    groupId:isGrp?activeChatId:null
+  };
+
+  addChatMessage(activeChatId,msg);
+  renderMessages();
+  playSentChime();
+
+  if(activeChatId===ECHO){
+    msg.status='delivered';
+    setTimeout(()=>{
+      msg.status='read';
+      renderMessages();
+      const reply={
+        id:uid(),
+        from:ECHO,
+        name:'Echo Test',
+        photo:'',
+        text:'',
+        audioBlobUrl:blobUrl,
+        dur:dur,
+        ts:Date.now(),
+        status:'delivered',
+        isVoice:true,
+        isRadio:false,
+        groupId:null
+      };
+      addChatMessage(ECHO,reply);
+      renderMessages();
+      playRecvChime();
+    },600);
+    return;
+  }
+
+  blob.arrayBuffer().then(buf=>{
+    const payload={
+      t:'voice_note',mid,buf,mime:blob.type,dur,name:me.name,photo:me.photo||'',ts:msg.ts,groupId:isGrp?activeChatId:null
+    };
+    dispatchPayload(payload,msg);
+  });
+}
+
+/* ========================================================
+   FEATURE 2: REAL-TIME WALKIE-TALKIE RADIO (LIVE PTT STREAM)
+   ======================================================== */
+let liveRadioRec=null,liveRadioT0=0,liveRadioTimerI=null;
+let liveRadioChunks=[];
+let isLiveTransmitting=false;
+
+function startWalkieTalkieBroadcast(){
+  if(isLiveTransmitting||!activeChatId)return;
+  isLiveTransmitting=true;
+
+  // Realistic Squelch sound on transmitter
+  squelch();
+  $('#wt-ptt-btn').classList.add('active');
+  $('#wt-ptt-btn').textContent='LIVE TX';
+  $('#wt-drawer-status').innerHTML='<b style="color:var(--wa-red)">● TRANSMITTING LIVE RADIO... (Speak now)</b>';
+  $('#btn-wt-toggle').classList.add('live');
+
+  // Notify peer of incoming live radio broadcast
+  const isGrp=!!groups[activeChatId];
+  const startPayload={
+    t:'wt_live_start',
+    from:me.id,
+    name:me.name,
+    photo:me.photo||'',
+    groupId:isGrp?activeChatId:null
+  };
+  if(isGrp){
+    groups[activeChatId].members.forEach(m=>{if(m!==me.id)sendRaw(m,startPayload)});
+  }else{
+    sendRaw(activeChatId,startPayload);
+  }
+
+  getMicStream().then(stream=>{
+    if(!isLiveTransmitting)return;
+    const mt=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t))||'';
+    liveRadioRec=new MediaRecorder(stream,mt?{mimeType:mt}:{});
+    liveRadioChunks=[];
+
+    liveRadioRec.ondataavailable=ev=>{
+      if(ev.data.size)liveRadioChunks.push(ev.data);
+    };
+
+    liveRadioRec.onstop=()=>finishWalkieTalkieBroadcast(liveRadioRec);
+
+    liveRadioRec.start();
+    liveRadioT0=performance.now();
+  }).catch(()=>{
+    isLiveTransmitting=false;
+    $('#wt-ptt-btn').classList.remove('active');
+    $('#wt-ptt-btn').textContent='PTT TALK';
+    $('#btn-wt-toggle').classList.remove('live');
+    toast('Microphone access denied');
+  });
+}
+
+function stopWalkieTalkieBroadcast(){
+  if(!isLiveTransmitting)return;
+  isLiveTransmitting=false;
+
+  $('#wt-ptt-btn').classList.remove('active');
+  $('#wt-ptt-btn').textContent='PTT TALK';
+  $('#btn-wt-toggle').classList.remove('live');
+  $('#wt-drawer-status').textContent='Hold button to transmit live audio through peer\'s speaker';
+
+  // Realistic Roger Beep upon release
+  rogerBeep();
+
+  if(liveRadioRec&&liveRadioRec.state==='recording'){
+    liveRadioRec.stop();
+  }
+}
+
+function finishWalkieTalkieBroadcast(rec){
+  const dur=Math.max(0.6,(performance.now()-liveRadioT0)/1000);
+  const blob=new Blob(liveRadioChunks,{type:rec.mimeType||'audio/webm'});
+  const blobUrl=URL.createObjectURL(blob);
+  const mid=uid();
+  const isGrp=!!groups[activeChatId];
+
+  // Distinct Walkie-Talkie Radio Transmission Card
+  const msg={
+    id:mid,
+    from:me.id,
+    name:me.name,
+    photo:me.photo||'',
+    text:'',
+    audioBlobUrl:blobUrl,
+    dur:dur,
+    ts:Date.now(),
+    status:'sent',
+    isVoice:false,
+    isRadio:true,
+    groupId:isGrp?activeChatId:null
+  };
+
+  addChatMessage(activeChatId,msg);
+  renderMessages();
+
+  if(activeChatId===ECHO){
+    setTimeout(()=>{
+      // Echo immediately plays back live walkie-talkie burst
+      squelch();
+      $('#audio-banner').classList.add('on');
+      $('#banner-name').textContent='Echo Station (462.5625 MHz)';
+      const a=new Audio(blobUrl);
+      a.onended=()=>{
+        rogerBeep();
+        $('#audio-banner').classList.remove('on');
+      };
+      a.play().catch(()=>{});
+
+      const reply={
+        id:uid(),
+        from:ECHO,
+        name:'Echo Test',
+        photo:'',
+        text:'',
+        audioBlobUrl:blobUrl,
+        dur:dur,
+        ts:Date.now(),
+        status:'delivered',
+        isVoice:false,
+        isRadio:true,
+        groupId:null
+      };
+      addChatMessage(ECHO,reply);
+      renderMessages();
+    },600);
+    return;
+  }
+
+  // Send live transmission end with audio for instant receiver playback
+  blob.arrayBuffer().then(buf=>{
+    const payload={
+      t:'wt_live_audio',mid,buf,mime:blob.type,dur,name:me.name,photo:me.photo||'',ts:msg.ts,groupId:isGrp?activeChatId:null
+    };
+    if(isGrp){
+      groups[activeChatId].members.forEach(m=>{if(m!==me.id)sendRaw(m,payload)});
+    }else{
+      sendRaw(activeChatId,payload);
+    }
+  });
+}
+
+/* Incoming Walkie-Talkie Live Audio Handlers */
+function handleLiveRadioStart(senderId,d){
+  squelch();
+  $('#audio-banner').classList.add('on');
+  $('#banner-name').textContent='📻 '+(d.name||displayName(senderId))+' (Live Radio TX)';
+  setAvContent($('#banner-av'),displayPhoto(senderId),displayName(senderId));
+}
+
+function handleLiveRadioAudio(senderId,d){
+  const chatId=d.groupId||senderId;
+  const blob=new Blob([d.buf],{type:d.mime});
+  const blobUrl=URL.createObjectURL(blob);
+
+  // Play immediately through speakers!
+  squelch();
+  $('#audio-banner').classList.add('on');
+  $('#banner-name').textContent='📻 '+(d.name||displayName(senderId))+' (Speaking Live)';
+  setAvContent($('#banner-av'),displayPhoto(senderId),displayName(senderId));
+
+  const audio=new Audio(blobUrl);
+  audio.onended=()=>{
+    rogerBeep();
+    $('#audio-banner').classList.remove('on');
+  };
+  audio.onerror=()=>{
+    $('#audio-banner').classList.remove('on');
+  };
+  audio.play().catch(()=>{});
+
+  // Also log into chat timeline
+  const msg={
+    id:d.mid||uid(),
+    from:senderId,
+    name:d.name||displayName(senderId),
+    photo:d.photo||displayPhoto(senderId),
+    text:'',
+    audioBlobUrl:blobUrl,
+    dur:d.dur||1,
+    ts:d.ts||Date.now(),
+    status:'delivered',
+    isVoice:false,
+    isRadio:true,
+    groupId:d.groupId||null
+  };
+  addChatMessage(chatId,msg);
+  if(activeChatId===chatId){
+    renderMessages();
+  }
+}
+
+function handleLiveRadioStop(senderId,d){
+  rogerBeep();
+  $('#audio-banner').classList.remove('on');
 }
 
 /* Dispatch payload */
@@ -1791,6 +2428,7 @@ function sendMessage(text){
     ts:Date.now(),
     status:'pending',
     isVoice:false,
+    isRadio:false,
     groupId:isGrp?activeChatId:null
   };
 
@@ -1812,6 +2450,7 @@ function sendMessage(text){
         ts:Date.now(),
         status:'delivered',
         isVoice:false,
+        isRadio:false,
         groupId:null
       };
       addChatMessage(ECHO,reply);
@@ -1848,6 +2487,7 @@ async function sendFileAttachment(file, caption=''){
     ts:Date.now(),
     status:'pending',
     isVoice:false,
+    isRadio:false,
     groupId:isGrp?activeChatId:null
   };
 
@@ -1873,6 +2513,7 @@ async function sendFileAttachment(file, caption=''){
         ts:Date.now(),
         status:'delivered',
         isVoice:false,
+        isRadio:false,
         groupId:null
       };
       addChatMessage(ECHO,reply);
@@ -1886,64 +2527,6 @@ async function sendFileAttachment(file, caption=''){
     t:'msg',mid,text:caption,fileData:dataUrl,fileName:file.name,fileSize:file.size,fileType:msg.fileType,name:me.name,photo:me.photo||'',ts:msg.ts,groupId:isGrp?activeChatId:null
   };
   dispatchPayload(payload,msg);
-}
-
-/* Send voice note transmission */
-function sendVoiceTransmission(blob,dur){
-  if(!activeChatId)return;
-  const mid=uid();
-  const blobUrl=URL.createObjectURL(blob);
-  const isGrp=!!groups[activeChatId];
-
-  const msg={
-    id:mid,
-    from:me.id,
-    name:me.name,
-    photo:me.photo||'',
-    text:'',
-    audioBlobUrl:blobUrl,
-    dur:dur,
-    ts:Date.now(),
-    status:'pending',
-    isVoice:true,
-    groupId:isGrp?activeChatId:null
-  };
-
-  addChatMessage(activeChatId,msg);
-  renderMessages();
-  playSentChime();
-
-  if(activeChatId===ECHO){
-    msg.status='delivered';
-    setTimeout(()=>{
-      msg.status='read';
-      renderMessages();
-      const reply={
-        id:uid(),
-        from:ECHO,
-        name:'Echo Test',
-        photo:'',
-        text:'',
-        audioBlobUrl:blobUrl,
-        dur:dur,
-        ts:Date.now(),
-        status:'delivered',
-        isVoice:true,
-        groupId:null
-      };
-      addChatMessage(ECHO,reply);
-      renderMessages();
-      playRecvChime();
-    },600);
-    return;
-  }
-
-  blob.arrayBuffer().then(buf=>{
-    const payload={
-      t:'voice',mid,buf,mime:blob.type,dur,name:me.name,photo:me.photo||'',ts:msg.ts,groupId:isGrp?activeChatId:null
-    };
-    dispatchPayload(payload,msg);
-  });
 }
 
 /* ========================================================
@@ -2020,6 +2603,7 @@ function postToChannel(cid, text){
     ts:Date.now(),
     status:'delivered',
     isVoice:false,
+    isRadio:false,
     isChannel:true,
     groupId:cid
   };
@@ -2027,7 +2611,6 @@ function postToChannel(cid, text){
   renderMessages();
   playSentChime();
 
-  // Broadcast to all connected peers
   Object.keys(conns).forEach(rid=>{
     sendRaw(rid,{t:'channel_post',cid,msg});
   });
@@ -2122,7 +2705,6 @@ function displayStatusItem(){
   $('#status-viewer-name').textContent=displayName(activeViewerUid);
   $('#status-viewer-time').textContent=fmtTime(item.ts);
 
-  // Setup Progress Bars
   const pWrap=$('#status-progress-bars');
   pWrap.innerHTML='';
   st.items.forEach((_,i)=>{
@@ -2133,7 +2715,6 @@ function displayStatusItem(){
     pWrap.append(tr);
   });
 
-  // Display content
   const body=$('#status-viewer-body');
   body.innerHTML='';
   if(item.type==='photo'){
@@ -2151,7 +2732,6 @@ function displayStatusItem(){
     body.append(txt);
   }
 
-  // Animate active segment
   const activeFill=pWrap.children[activeViewerIdx].querySelector('.status-seg-fill');
   setTimeout(()=>{
     if(activeFill)activeFill.style.width='100%';
@@ -2191,7 +2771,6 @@ function addStatusItem(item){
   renderStatusList();
   toast('Status posted!');
 
-  // Broadcast status to connected peers
   Object.keys(conns).forEach(id=>{
     sendRaw(id,{t:'status_post',item});
   });
@@ -2326,7 +2905,8 @@ function renderChatsList(){
     const bot=el('div','chat-bottom-row');
     const snip=el('div','chat-snippet');
     if(lastMsg){
-      if(lastMsg.isVoice) snip.textContent='🎙️ Voice note';
+      if(lastMsg.isRadio) snip.textContent='📻 Radio Transmission';
+      else if(lastMsg.isVoice) snip.textContent='🎙️ Voice Note';
       else if(lastMsg.fileType==='image') snip.textContent='📷 Photo';
       else if(lastMsg.fileType==='file') snip.textContent='📄 '+lastMsg.fileName;
       else snip.textContent=lastMsg.text;
@@ -2375,13 +2955,16 @@ function openChat(id){
     $('#chat-input-bar').style.display='flex';
     $('#channel-react-bar').style.display='none';
     if(isGrp){
-      $('#chat-subtitle').textContent=groups[id].members.length+' members';
+      $('#chat-subtitle').textContent=groups[id].members.length+' members · Radio Ch '+id.slice(0,5);
     }else{
-      $('#chat-subtitle').textContent=isContactOnline(id)?'Online':'Offline · Messages will queue';
+      $('#chat-subtitle').textContent=isContactOnline(id)?'Online · Frequency Open':'Offline · Frequency Standby';
     }
   }
 
-  // Mark all unread messages as read
+  // Update Walkie-Talkie drawer frequency label
+  $('#wt-channel-label').textContent='FREQ: '+(isGrp?'GRP-RADIO ':'DIR-RADIO ')+id.slice(0,6)+' (462.'+Math.abs(id.split('').reduce((a,c)=>a+c.charCodeAt(0),0)%9000+1000)+' MHz)';
+
+  // Mark unread as read
   const ms=messages[id]||[];
   let changed=false;
   ms.forEach(m=>{
@@ -2424,7 +3007,31 @@ function renderMessages(){
       bubble.append(sender);
     }
 
-    if(m.fileType==='image'&&m.fileData){
+    if(m.isRadio){
+      // Distinct Walkie-Talkie Live Radio Transmission Card
+      const rCard=el('div','wt-radio-card');
+      const rIcon=el('div','wt-radio-icon','📻');
+      const rBody=el('div','wt-radio-body');
+      const rTitle=el('div','wt-radio-title','Walkie-Talkie Radio');
+      const rSub=el('div','wt-radio-sub','Live transmission · '+Math.round(m.dur||2)+'s (Over)');
+      rBody.append(rTitle,rSub);
+
+      const rPlayBtn=el('button','icon-btn','▶',{style:'color:var(--wa-teal);font-size:1.2rem'});
+      rPlayBtn.title='Replay Radio Transmission';
+      rPlayBtn.onclick=()=>{
+        squelch();
+        const a=new Audio(m.audioBlobUrl);
+        rPlayBtn.textContent='⏸';
+        a.onended=()=>{
+          rogerBeep();
+          rPlayBtn.textContent='▶';
+        };
+        a.play().catch(()=>{rPlayBtn.textContent='▶'});
+      };
+
+      rCard.append(rIcon,rBody,rPlayBtn);
+      bubble.append(rCard);
+    }else if(m.fileType==='image'&&m.fileData){
       const img=el('img','chat-img-preview');
       img.src=m.fileData;
       img.onclick=()=>openImageLightbox(m.fileData,m.fileName||'photo.jpg');
@@ -2444,6 +3051,7 @@ function renderMessages(){
       bubble.append(docCard);
       if(m.text)bubble.append(el('div','msg-content',m.text));
     }else if(m.isVoice){
+      // Asynchronous Voice Note with Waveform
       const vn=el('div','vn-player');
       const playBtn=el('button','vn-btn','▶');
       playBtn.onclick=()=>{
@@ -2528,9 +3136,9 @@ function refreshUI(){
     if(isChan){
       $('#chat-subtitle').textContent=channels[activeChatId].category+' · Broadcast';
     }else if(isGrp){
-      $('#chat-subtitle').textContent=groups[activeChatId].members.length+' members';
+      $('#chat-subtitle').textContent=groups[activeChatId].members.length+' members · Radio Ch '+activeChatId.slice(0,5);
     }else{
-      $('#chat-subtitle').textContent=isContactOnline(activeChatId)?'Online':'Offline · Messages will queue';
+      $('#chat-subtitle').textContent=isContactOnline(activeChatId)?'Online · Frequency Open':'Offline · Frequency Standby';
     }
   }
 }
@@ -2545,19 +3153,15 @@ const friendSubmitBtn=$('#btn-add-friend-submit');
 
 function getDirectoryPeers(){
   const map=new Map();
-  // Add Echo
   map.set(ECHO,{id:ECHO,name:'Echo Test',accountType:'business'});
-  // Add registered accounts
   registeredAccounts.forEach(a=>{
     if(me && a.id!==me.id)map.set(a.id,a);
   });
-  // Add existing contacts
   contacts.forEach(c=>{
     if(me && c.id!==me.id&&!map.has(c.id)){
       map.set(c.id,{id:c.id,name:c.name||c.id,accountType:c.accountType||'personal'});
     }
   });
-  // Add active connected peers
   Object.keys(conns).forEach(id=>{
     if(me && id!==me.id&&!map.has(id)){
       map.set(id,{id,name:conns[id].nm||id,accountType:'personal'});
@@ -2581,7 +3185,6 @@ function updateFriendSuggestions(){
   }
 
   const matches=directory.filter(p=>p.id.toLowerCase().includes(q)||p.name.toLowerCase().includes(q));
-  const exactMatch=directory.find(p=>p.id.toUpperCase()===raw.toUpperCase()||p.name.toLowerCase()===q);
 
   if(matches.length>0){
     friendSuggestList.classList.add('show');
@@ -2699,17 +3302,14 @@ $('#form-auth-step1').onsubmit=e=>{
   const contactInput=$('#auth-contact-input').value.trim();
   const fullContact=cCode==='email'?contactInput:(cCode+' '+contactInput);
 
-  // Generate 6-digit OTP
   generatedOtp=String(Math.floor(100000 + Math.random()*900000));
   pendingAuthData={name,accountType,fullContact};
 
-  // Show Step 2
   $('#form-auth-step1').style.display='none';
   $('#form-auth-step2').style.display='block';
   $('#auth-otp-target-label').textContent='We sent a 6-digit code to '+fullContact;
   $('#auth-otp-input').value='';
 
-  // Display simulated Real-Time Push Notification
   $('#banner-otp-code').textContent=generatedOtp.slice(0,3)+'-'+generatedOtp.slice(3);
   $('#push-otp-banner').style.display='flex';
   beep(880,.08);beep(1100,.12,.08);
@@ -2737,7 +3337,7 @@ $('#form-auth-step2').onsubmit=e=>{
   e.preventDefault();
   const entered=$('#auth-otp-input').value.trim().replace(/\D/g,'');
   if(entered!==generatedOtp){
-    return toast('❌ Invalid verification code. Please check your SMS/Notification.');
+    return toast('❌ Invalid verification code. Please check your notification.');
   }
 
   const newId=genId();
@@ -2751,7 +3351,6 @@ $('#form-auth-step2').onsubmit=e=>{
     secretAdmin:newId===_SECRET_ADMIN_ID
   };
 
-  // Register in accounts directory
   registeredAccounts.push({
     id:newId,
     name:me.name,
@@ -2763,7 +3362,8 @@ $('#form-auth-step2').onsubmit=e=>{
   closeModal('modal-auth');
   startPeer();
   refreshUI();
-  toast('✓ Welcome '+me.name+'! Your account is verified.');
+  toast('✓ Welcome '+me.name+'! Radio frequency active.');
+  speakWalkieTalkieWelcome();
 };
 
 /* ========================================================
@@ -2950,7 +3550,7 @@ function simulateEchoCall(isVideo){
 }
 
 /* ========================================================
-   CHAT INPUT, ATTACHMENTS & VOICE RECORDING
+   CHAT INPUT, ATTACHMENTS & ASYNC VOICE NOTES
    ======================================================== */
 const chatInput=$('#chat-input');
 const micSendBtn=$('#btn-mic-send');
@@ -2963,7 +3563,7 @@ chatInput.addEventListener('input',()=>{
     micSendBtn.title='Send message';
   }else{
     micSendIcon.textContent='🎙️';
-    micSendBtn.title='Hold to record voice note';
+    micSendBtn.title='Hold to record Voice Note';
   }
 });
 
@@ -3032,10 +3632,8 @@ window.addEventListener('paste',e=>{
   }
 });
 
-/* Push To Talk & Voice Notes */
-let mediaStream=null,mediaRec=null,recChunks=[],recT0=0,recTimerI=null;
-let recHolding=false,recSlideCancel=false,recStartX=0;
-
+/* Microphone Stream */
+let mediaStream=null;
 async function getMicStream(){
   if(mediaStream&&mediaStream.active)return mediaStream;
   mediaStream=await navigator.mediaDevices.getUserMedia({
@@ -3044,55 +3642,59 @@ async function getMicStream(){
   return mediaStream;
 }
 
-function startVoiceRecording(e){
-  if(micSendIcon.textContent==='➤'||recHolding||!activeChatId)return;
-  recHolding=true;recSlideCancel=false;
-  recStartX=e.clientX||(e.touches&&e.touches[0].clientX)||0;
+/* Voice Note Recording (WhatsApp-Style Audio Message) */
+let vnRec=null,vnChunks=[],vnT0=0,vnTimerI=null;
+let vnHolding=false,vnSlideCancel=false,vnStartX=0;
+
+function startVoiceNoteRecording(e){
+  if(micSendIcon.textContent==='➤'||vnHolding||!activeChatId)return;
+  vnHolding=true;vnSlideCancel=false;
+  vnStartX=e.clientX||(e.touches&&e.touches[0].clientX)||0;
 
   getMicStream().then(stream=>{
-    if(!recHolding)return;
+    if(!vnHolding)return;
     const mt=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg;codecs=opus'].find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t))||'';
-    mediaRec=new MediaRecorder(stream,mt?{mimeType:mt}:{});
-    recChunks=[];
-    mediaRec.ondataavailable=ev=>{if(ev.data.size)recChunks.push(ev.data)};
-    const r=mediaRec;
-    r.onstop=()=>finishVoiceRecording(r);
+    vnRec=new MediaRecorder(stream,mt?{mimeType:mt}:{});
+    vnChunks=[];
+    vnRec.ondataavailable=ev=>{if(ev.data.size)vnChunks.push(ev.data)};
+    const r=vnRec;
+    r.onstop=()=>finishVoiceNoteRecording(r);
 
     r.start();
-    recT0=performance.now();
+    vnT0=performance.now();
     $('#rec-hud').classList.add('show');
     micSendBtn.classList.add('mic-live');
 
-    recTimerI=setInterval(()=>{
-      const s=Math.floor((performance.now()-recT0)/1000);
+    vnTimerI=setInterval(()=>{
+      const s=Math.floor((performance.now()-vnT0)/1000);
       $('#rec-timer').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
     },200);
   }).catch(()=>{
-    recHolding=false;toast('Microphone access denied');
+    vnHolding=false;toast('Microphone access denied');
   });
 }
 
-function finishVoiceRecording(r){
-  clearInterval(recTimerI);
+function finishVoiceNoteRecording(r){
+  clearInterval(vnTimerI);
   $('#rec-hud').classList.remove('show');
   micSendBtn.classList.remove('mic-live');
-  const dur=(performance.now()-recT0)/1000;
-  if(recSlideCancel){
-    toast('Voice note cancelled');
+  const dur=(performance.now()-vnT0)/1000;
+  if(vnSlideCancel){
+    toast('Voice Note cancelled');
   }else if(dur<0.4){
-    toast('Hold mic to record');
+    toast('Hold mic to record voice note');
   }else{
-    const blob=new Blob(recChunks,{type:r.mimeType||'audio/webm'});
-    sendVoiceTransmission(blob,dur);
+    const blob=new Blob(vnChunks,{type:r.mimeType||'audio/webm'});
+    sendVoiceNote(blob,dur);
   }
 }
 
-function stopVoiceRecording(cancel){
-  if(!recHolding)return;
-  recHolding=false;
-  if(mediaRec&&mediaRec.state==='recording'){
-    recSlideCancel=!!cancel;
-    mediaRec.stop();
+function stopVoiceNoteRecording(cancel){
+  if(!vnHolding)return;
+  vnHolding=false;
+  if(vnRec&&vnRec.state==='recording'){
+    vnSlideCancel=!!cancel;
+    vnRec.stop();
   }
 }
 
@@ -3100,43 +3702,57 @@ micSendBtn.addEventListener('pointerdown',e=>{
   if(micSendIcon.textContent==='🎙️'){
     e.preventDefault();
     micSendBtn.setPointerCapture(e.pointerId);
-    startVoiceRecording(e);
+    startVoiceNoteRecording(e);
   }
 });
 micSendBtn.addEventListener('pointermove',e=>{
-  if(!recHolding)return;
-  if(e.clientX<recStartX-60){
-    recSlideCancel=true;
+  if(!vnHolding)return;
+  if(e.clientX<vnStartX-60){
+    vnSlideCancel=true;
     $('#rec-timer').textContent='Cancel?';
   }
 });
-micSendBtn.addEventListener('pointerup',()=>stopVoiceRecording(recSlideCancel));
-micSendBtn.addEventListener('pointercancel',()=>stopVoiceRecording(true));
+micSendBtn.addEventListener('pointerup',()=>stopVoiceNoteRecording(vnSlideCancel));
+micSendBtn.addEventListener('pointercancel',()=>stopVoiceNoteRecording(true));
 
-/* PTT Dial */
+/* ========================================================
+   WALKIE TALKIE PTT DIAL & SPACEBAR SHORTCUT
+   ======================================================== */
 $('#btn-wt-toggle').onclick=()=>$('#wt-drawer').classList.toggle('show');
 $('#btn-close-wt').onclick=()=>$('#wt-drawer').classList.remove('show');
+$('#btn-drawer-test-voice').onclick=()=>{
+  radioVoiceSpoken=false;
+  speakWalkieTalkieWelcome();
+};
+
 const wtPtt=$('#wt-ptt-btn');
 wtPtt.addEventListener('pointerdown',e=>{
   e.preventDefault();
   wtPtt.setPointerCapture(e.pointerId);
-  wtPtt.classList.add('active');
-  wtPtt.textContent='LIVE';
-  startVoiceRecording(e);
+  startWalkieTalkieBroadcast();
 });
-wtPtt.addEventListener('pointerup',()=>{
-  wtPtt.classList.remove('active');
-  wtPtt.textContent='TALK';
-  stopVoiceRecording(false);
+wtPtt.addEventListener('pointerup',()=>stopWalkieTalkieBroadcast());
+wtPtt.addEventListener('pointercancel',()=>stopWalkieTalkieBroadcast());
+
+/* Spacebar Push-To-Talk Shortcut (while not focused on typing input) */
+let spacePttActive=false;
+window.addEventListener('keydown',e=>{
+  if(e.code==='Space'&&!spacePttActive&&activeChatId&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){
+    e.preventDefault();
+    spacePttActive=true;
+    startWalkieTalkieBroadcast();
+  }
 });
-wtPtt.addEventListener('pointercancel',()=>{
-  wtPtt.classList.remove('active');
-  wtPtt.textContent='TALK';
-  stopVoiceRecording(true);
+window.addEventListener('keyup',e=>{
+  if(e.code==='Space'&&spacePttActive){
+    e.preventDefault();
+    spacePttActive=false;
+    stopWalkieTalkieBroadcast();
+  }
 });
 
 /* ========================================================
-   MODALS & SETTINGS
+   MODALS, USER MANUAL & LOGOUT
    ======================================================== */
 function openModal(id){$('#'+id).classList.add('show')}
 window.closeModal=id=>{$('#'+id).classList.remove('show')}
@@ -3153,6 +3769,48 @@ $('#btn-start-chat').onclick=()=>openModal('modal-add-friend');
 $('#btn-add-chat').onclick=()=>openModal('modal-add-friend');
 $('#btn-my-settings').onclick=()=>openModal('modal-settings');
 $('#my-av-btn').onclick=()=>openModal('modal-settings');
+$('#btn-user-manual').onclick=()=>openModal('modal-user-guide');
+$('#btn-settings-manual').onclick=()=>{closeModal('modal-settings');openModal('modal-user-guide')};
+$('#btn-settings-test-radio').onclick=()=>{
+  radioVoiceSpoken=false;
+  speakWalkieTalkieWelcome();
+};
+
+/* User Manual Tabs */
+$$('.gtab').forEach(tab=>{
+  tab.onclick=()=>{
+    $$('.gtab').forEach(t=>t.classList.remove('on'));
+    tab.classList.add('on');
+    const target=tab.dataset.gtab;
+    $$('.guide-content-pane').forEach(p=>p.style.display='none');
+    $('#gtab-'+target).style.display='flex';
+  };
+});
+
+/* Logout Action */
+$('#btn-logout').onclick=()=>{
+  if(confirm('Are you sure you want to log out from WalkieTalkie?')){
+    ls.set('wt_me',null);
+    me=null;
+    if(peer){
+      try{peer.destroy()}catch(e){}
+      peer=null;
+    }
+    conns={};
+    activeChatId=null;
+    closeModal('modal-settings');
+    $('#app').classList.remove('in-chat');
+    $('#chat-pane').style.display='none';
+    $('#no-chat').style.display='flex';
+    openModal('modal-auth');
+    $('#form-auth-step1').style.display='block';
+    $('#form-auth-step2').style.display='none';
+    $('#auth-name').value='';
+    $('#auth-contact-input').value='';
+    toast('Logged out successfully');
+  }
+};
+
 $('#header-info-click').onclick=()=>openContactInfo(activeChatId);
 $('#btn-chat-menu').onclick=()=>openContactInfo(activeChatId);
 

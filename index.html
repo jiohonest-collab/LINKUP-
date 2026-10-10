@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Walkie Talkie</title>
+<title>Linkup</title>
 <!-- Brand Logo Favicon (Original SVG Data URI) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='64' y2='64' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%230084ff'/%3E%3Cstop offset='1' stop-color='%23005bb5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z' fill='white'/%3E%3Cpath d='M26 27C26 25 28 23 32 23C36 23 38 25 38 27' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5' stroke='%230084ff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='32' cy='34' r='1.5' fill='%230084ff'/%3E%3C/svg%3E">
 
@@ -324,7 +324,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .wt-toggle-btn.live{background:var(--wa-red);color:#fff;border-color:var(--wa-red);animation:ring 1s infinite}
 @keyframes ring{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 
-/* Live audio reception banner (Walkie Talkie Speaker Alert) */
+/* Live audio reception banner (Live Talk Speaker Alert) */
 #audio-banner{
   display:none;
   align-items:center;
@@ -385,7 +385,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .tick.read{color:var(--wa-tick-blue)}
 .tick.pending{color:var(--wa-tick-grey);font-size:.7rem}
 
-/* Dedicated Walkie-Talkie Radio Transmission Log Card in Chat */
+/* Dedicated Live Talk Transmission Log Card in Chat */
 .wt-radio-card{
   background:linear-gradient(135deg, rgba(0,132,255,.15), rgba(0,91,181,.15));
   border:1px solid var(--wa-teal);
@@ -480,7 +480,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 .rec-time{font-weight:700;font-size:1rem;color:var(--wa-red);min-width:45px}
 .rec-slide{font-size:.85rem;color:var(--wa-mute);flex:1;text-align:center}
 
-/* Floating PTT Walkie-Talkie Drawer */
+/* Floating PTT Live Talk Drawer */
 #wt-drawer{
   position:absolute;bottom:75px;right:20px;width:310px;background:var(--modal-bg);border-radius:20px;box-shadow:0 16px 40px rgba(15,23,42,.28);border:1px solid var(--wa-line);padding:20px;display:none;flex-direction:column;align-items:center;gap:12px;z-index:30;animation:popIn .2s ease-out;
 }
@@ -644,15 +644,6 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 }
 .suggestions-box li:hover{background:rgba(0,132,255,.06)}
 
-/* Real-time simulated push banner */
-#push-otp-banner{
-  position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;border-radius:14px;padding:12px 18px;display:none;align-items:center;gap:12px;z-index:200;box-shadow:0 12px 32px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);animation:slideDown .25s ease-out;max-width:92%;
-}
-@keyframes slideDown{from{opacity:0;transform:translate(-50%,-20px)}to{opacity:1;transform:translate(-50%,0)}}
-.otp-pill{
-  background:#0284c7;color:#fff;font-weight:800;font-size:1.1rem;letter-spacing:2px;padding:3px 8px;border-radius:6px;
-}
-
 /* Toast */
 #toast{
   position:fixed;left:50%;bottom:85px;transform:translateX(-50%);background:rgba(15,23,42,.92);color:#fff;padding:9px 18px;border-radius:20px;font-size:.88rem;display:none;max-width:90%;text-align:center;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.25);
@@ -674,6 +665,20 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   #call-overlay.minimized{inset:auto 10px 70px auto;width:200px;height:260px}
   .attach-menu{left:12px;bottom:60px}
 }
+
+[hidden]{display:none!important}
+.auth-tabs{display:flex;border-bottom:1px solid var(--wa-line)}
+.auth-tabs button{flex:1;padding:12px;font-weight:700;color:var(--wa-mute);border-bottom:3px solid transparent;background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;font:inherit;font-weight:700}
+.auth-tabs button.on{color:var(--wa-teal);border-bottom-color:var(--wa-teal)}
+.auth-err{color:var(--wa-red);font-size:.8rem;font-weight:600;min-height:1.1em}
+.hintp{font-size:.76rem;color:var(--wa-mute)}
+.dir-list{list-style:none;padding:0;margin:0;max-height:52vh;overflow:auto;border:1px solid var(--wa-line);border-radius:10px}
+.dir-row{display:flex;gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--wa-line);cursor:pointer}
+.dir-row:hover{background:var(--wa-sidebar)}
+.dir-row .ci{flex:1;min-width:0}.dir-row small{display:block;color:var(--wa-mute);font-size:.76rem}
+.dir-dot{width:9px;height:9px;border-radius:50%;background:#94a3b8;flex:none}.dir-dot.on{background:#22c55e}
+.acct-row{display:flex;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--wa-line);text-align:left}
+.acct-row .ci{flex:1;min-width:0;font-size:.85rem}.acct-row small{display:block;color:var(--wa-mute)}
 </style>
 </head>
 <body>
@@ -683,7 +688,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
  <aside id="side">
   <div class="side-header">
    <!-- Website Logo & Title (Original SVG) -->
-   <div class="brand-box" id="btn-brand-home" title="Walkie Talkie Web - Home">
+   <div class="brand-box" id="btn-brand-home" title="Linkup Web - Home">
     <svg class="app-logo-svg" viewBox="0 0 64 64" fill="none">
      <defs>
       <linearGradient id="logoG" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
@@ -697,7 +702,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
      <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
      <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
     </svg>
-    <span class="brand-title">WalkieTalkie</span>
+    <span class="brand-title">Linkup</span>
    </div>
 
    <div class="my-av-box" id="my-av-btn" title="View & Edit Profile">
@@ -774,7 +779,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
   <!-- PANE 3: CHANNELS -->
   <div class="side-pane" id="pane-channels" style="display:none">
    <div class="channel-banner">
-    <div style="font-weight:700;font-size:.95rem;color:var(--wa-teal)">📢 WalkieTalkie Channels</div>
+    <div style="font-weight:700;font-size:.95rem;color:var(--wa-teal)">📢 Linkup Channels</div>
     <div style="font-size:.78rem;color:var(--wa-mute)">Stay updated on topics, announcements, and news.</div>
     <button class="channel-create-btn" id="btn-create-channel-open" style="margin-top:4px">
      <span>➕</span> <span>New Channel</span>
@@ -812,7 +817,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     <path d="M28.5 30.5C28.5 29.5 29.8 28.5 32 28.5C34.2 28.5 35.5 29.5 35.5 30.5" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
     <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
    </svg>
-   <h2>WalkieTalkie Web</h2>
+   <h2>Linkup Web</h2>
    <p>Real-time live push-to-talk radio, instant voice notes, HD video calls, and encrypted messaging. Stay connected effortlessly.</p>
    <div style="display:flex;gap:10px;margin-top:10px">
     <button class="btn-primary" id="btn-start-chat">Start a New Chat</button>
@@ -832,20 +837,20 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     <div class="chat-header-acts" id="chat-header-acts">
      <button class="icon-btn" id="btn-voice-call" title="Voice call">📞</button>
      <button class="icon-btn" id="btn-video-call" title="Video call">📹</button>
-     <!-- Distinct Walkie-Talkie Radio Toggle Button -->
-     <button class="wt-toggle-btn" id="btn-wt-toggle" title="Open Real-time Walkie Talkie Radio">
+     <!-- Distinct Live Talk Toggle Button -->
+     <button class="wt-toggle-btn" id="btn-wt-toggle" title="Open Real-time Live Talk">
       <span>📻</span> <span id="wt-btn-txt">Radio PTT</span>
      </button>
      <button class="icon-btn" id="btn-chat-menu" title="Info">⋮</button>
     </div>
    </header>
 
-   <!-- Live audio reception banner (Walkie Talkie Speaker Transmission) -->
+   <!-- Live audio reception banner (Live Talk Speaker Transmission) -->
    <div id="audio-banner">
     <div class="av" id="banner-av" style="width:32px;height:32px;font-size:.8rem"><span>?</span></div>
     <div style="flex:1;min-width:0">
      <div id="banner-name" style="font-weight:700;font-size:.88rem">Radio Transmission...</div>
-     <div style="font-size:.76rem;opacity:.9">📻 Live Walkie-Talkie broadcast playing on speaker</div>
+     <div style="font-size:.76rem;opacity:.9">📻 Live Live Talk broadcast playing on speaker</div>
     </div>
     <div class="eq-bars"><i></i><i></i><i></i><i></i></div>
    </div>
@@ -904,12 +909,12 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     </div>
    </div>
 
-   <!-- Floating Walkie Talkie Live PTT Drawer (Dedicated Real-time Radio) -->
+   <!-- Floating Live Talk Live PTT Drawer (Dedicated Real-time Radio) -->
    <div id="wt-drawer">
     <button class="drawer-close" id="btn-close-wt">✕</button>
     <div style="display:flex;align-items:center;gap:8px">
      <span style="font-size:1.2rem">📻</span>
-     <span style="font-weight:700;font-size:1rem;color:var(--wa-teal)">Walkie-Talkie Radio</span>
+     <span style="font-weight:700;font-size:1rem;color:var(--wa-teal)">Live Talk</span>
     </div>
     <div class="radio-channel-tag" id="wt-channel-label">FREQ: 462.5625 MHz · CH-01</div>
     <div style="font-size:.78rem;color:var(--wa-mute);text-align:center" id="wt-drawer-status">
@@ -1005,22 +1010,22 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
  <div class="modal-card" style="width:min(540px,100%)">
   <div class="modal-head">
    <button class="icon-btn" style="color:#fff;margin-left:-8px" onclick="closeModal('modal-user-guide')">✕</button>
-   <span>📖 WalkieTalkie User Manual</span>
+   <span>📖 Linkup User Manual</span>
   </div>
   <div class="modal-body">
    <div class="guide-tabs">
-    <button class="gtab on" data-gtab="walkie">📻 Walkie-Talkie</button>
+    <button class="gtab on" data-gtab="livetalk">📻 Live Talk</button>
     <button class="gtab" data-gtab="voicenote">🎙️ Voice Notes</button>
     <button class="gtab" data-gtab="chatting">💬 Chat & Media</button>
     <button class="gtab" data-gtab="calling">📞 Calls</button>
     <button class="gtab" data-gtab="settings">⚙️ Themes & ID</button>
    </div>
 
-   <!-- TAB 1: Walkie Talkie Real-Time Mode -->
-   <div class="guide-content-pane" id="gtab-walkie">
+   <!-- TAB 1: Live Talk Real-Time Mode -->
+   <div class="guide-content-pane" id="gtab-livetalk">
     <div class="guide-feature-box">
-     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">📻 Real-time Walkie Talkie (Live PTT)</h4>
-     <p style="margin-top:6px">Unlike standard audio files, <b>Walkie-Talkie Mode</b> broadcasts live audio straight through your friend's speakers in real time!</p>
+     <h4 style="color:var(--wa-teal);display:flex;align-items:center;gap:6px">📻 Real-time Live Talk (Live PTT)</h4>
+     <p style="margin-top:6px">Unlike standard audio files, <b>Live Talk Mode</b> broadcasts live audio straight through your friend's speakers in real time!</p>
     </div>
     <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
      <li><b>How to Talk:</b> Tap the <b>📻 Radio PTT</b> button in the top right of any chat to open the dial.</li>
@@ -1050,7 +1055,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
      <p style="margin-top:6px">Exchange messages, photos, camera snaps, and documents directly peer-to-peer.</p>
     </div>
     <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
-     <li><b>Add Contact:</b> Click <b>➕</b> in the header and enter a user's Walkie Talkie ID (e.g. <code>ECHO00</code> to test).</li>
+     <li><b>Add Contact:</b> Click <b>➕</b> in the header and enter a user's Linkup ID (e.g. <code>ECHO00</code> to test).</li>
      <li><b>Send Files & Photos:</b> Tap the <b>📎</b> paperclip to attach documents, photos, or use your camera. You can also paste or drag and drop files directly.</li>
      <li><b>Ticks:</b> 🕒 = Sending, ✓ = Sent to network, ✓✓ = Delivered, <span style="color:var(--wa-teal);font-weight:700">✓✓</span> = Read.</li>
     </ul>
@@ -1076,7 +1081,7 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     </div>
     <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
      <li><b>Themes:</b> Open Settings ⚙️ to switch between ☀️ <b>Light</b>, 🌙 <b>Dark</b>, or 🖥️ <b>System</b> theme.</li>
-     <li><b>Custom ID:</b> Set a personalized, memorable Walkie Talkie ID anytime in Settings.</li>
+     <li><b>Custom ID:</b> Set a personalized, memorable Linkup ID anytime in Settings.</li>
      <li><b>Sign Out:</b> Use the <b>Log Out</b> button in Settings to safely disconnect and log in with another account.</li>
     </ul>
    </div>
@@ -1216,23 +1221,11 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
    <span>New Chat / Add Contact</span>
   </div>
   <form id="form-add-friend" class="modal-body">
-   <label style="font-size:.84rem;color:var(--wa-mute)">Search user by Walkie Talkie ID or Name:</label>
-   <input class="input-field" id="input-friend-id" placeholder="Enter user ID (e.g. ECHO00, K8M9X2)" required maxlength="25" autocomplete="off">
-   
-   <!-- Real-time status feedback -->
-   <div id="friend-search-feedback" style="font-size:.78rem;font-weight:600;color:var(--wa-mute);margin-top:-6px">
-    Type an ID or select from matching directory below
-   </div>
-
-   <!-- Live Auto-Suggestions dropdown list -->
-   <ul class="suggestions-box" id="friend-suggestions-list"></ul>
-
-   <label style="font-size:.84rem;color:var(--wa-mute);margin-top:4px">Custom Name (only visible to you on this device):</label>
-   <input class="input-field" id="input-friend-name" placeholder="Contact Nickname (optional)" maxlength="30" autocomplete="off">
-
+   <input class="input-field" id="input-friend-id" placeholder="🔍 Search nickname, name or Linkup ID" maxlength="40" autocomplete="off">
+   <div id="friend-search-feedback" style="font-size:.78rem;font-weight:600;color:var(--wa-mute)">All registered people</div>
+   <ul class="dir-list" id="friend-suggestions-list"></ul>
    <div class="modal-foot" style="margin:8px -22px -20px;padding-bottom:14px">
-    <button type="button" class="btn-secondary" onclick="closeModal('modal-add-friend')">Cancel</button>
-    <button type="submit" class="btn-primary" id="btn-add-friend-submit" disabled>Add & Chat</button>
+    <button type="button" class="btn-secondary" onclick="closeModal('modal-add-friend')">Close</button>
    </div>
   </form>
  </div>
@@ -1356,12 +1349,23 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
     </div>
 
     <div>
-     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Your Walkie Talkie ID:</label>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Your Linkup ID:</label>
      <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
       <b id="settings-my-id" style="font-size:.92rem;letter-spacing:1px;background:var(--wa-sidebar);padding:8px 12px;border-radius:8px;flex:1;border:1px solid var(--wa-line)">------</b>
       <button class="btn-secondary" id="btn-copy-my-id">Copy ID</button>
       <button class="btn-secondary" id="btn-set-custom-id" title="Set a custom ID">Custom ID</button>
      </div>
+    </div>
+
+    <div>
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Your nickname (login name):</label>
+     <div style="margin-top:4px"><b id="settings-my-nick" style="font-size:.92rem;background:var(--wa-sidebar);padding:8px 12px;border-radius:8px;display:block;border:1px solid var(--wa-line)">-</b></div>
+    </div>
+
+    <div style="border-top:1px solid var(--wa-line);padding-top:12px">
+     <label style="font-size:.8rem;color:var(--wa-mute);font-weight:700">Accounts on this device:</label>
+     <div id="acct-list"></div>
+     <button type="button" class="btn-secondary" id="btn-add-account" style="width:100%;margin-top:8px">➕ Add another account</button>
     </div>
 
     <div style="display:flex;gap:8px">
@@ -1395,86 +1399,34 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
      ======================================================== -->
 <div class="modal-overlay" id="modal-auth">
  <div class="modal-card">
-  <div class="modal-head" style="justify-content:center">
-   <span>Welcome to WalkieTalkie</span>
+  <div class="modal-head" style="justify-content:space-between">
+   <span>Welcome to Linkup</span>
+   <button type="button" class="icon-btn" id="auth-close" style="color:#fff" hidden onclick="closeModal('modal-auth')">✕</button>
   </div>
+  <div class="auth-tabs"><button type="button" id="tab-login" class="on">Log in</button><button type="button" id="tab-signup">Sign up</button></div>
 
-  <!-- STEP 1: Account Creation & Details -->
-  <form id="form-auth-step1" class="modal-body" style="text-align:center">
-   <svg class="no-chat-logo" style="width:64px;height:64px;margin:0 auto" viewBox="0 0 64 64" fill="none">
-    <rect width="64" height="64" rx="16" fill="url(#logoLg)"/>
-    <path d="M18 20C18 16.7 20.7 14 24 14H40C43.3 14 46 16.7 46 20V34C46 37.3 43.3 40 40 40H30L22 46V40H24C20.7 40 18 37.3 18 34V20Z" fill="white"/>
-    <path d="M26 27C26 25 28 23 32 23C36 23 38 25 38 27" stroke="#0084ff" stroke-width="2.6" stroke-linecap="round"/>
-    <circle cx="32" cy="34" r="1.5" fill="#0084ff"/>
-   </svg>
-   <h3 style="font-size:1.15rem;font-weight:700">Create Your Account</h3>
-   <p style="font-size:.84rem;color:var(--wa-mute);margin-top:-6px">
-    Choose your username and account type with secure mobile/email verification.
-   </p>
-
-   <div style="text-align:left;display:flex;flex-direction:column;gap:12px;margin-top:6px">
-    <div>
-     <label style="font-size:.8rem;font-weight:600;color:var(--wa-text)">Unique Username:</label>
-     <input class="input-field" id="auth-name" placeholder="e.g. Alex, Maya, BravoLeader" required maxlength="24" autocomplete="off">
-     <div id="auth-name-error" style="font-size:.75rem;font-weight:600;color:var(--wa-red);margin-top:3px;display:none">
-      ❌ Username already taken! Please pick a different name.
-     </div>
-    </div>
-
-    <div>
-     <label style="font-size:.8rem;font-weight:600;color:var(--wa-text)">Account Type:</label>
-     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-      <label style="border:1.5px solid var(--wa-line);padding:10px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600" id="lbl-type-personal">
-       <input type="radio" name="auth-account-type" value="personal" checked>
-       <span>👤 Personal</span>
-      </label>
-      <label style="border:1.5px solid var(--wa-line);padding:10px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600" id="lbl-type-business">
-       <input type="radio" name="auth-account-type" value="business">
-       <span>💼 Business</span>
-      </label>
-     </div>
-    </div>
-
-    <div>
-     <label style="font-size:.8rem;font-weight:600;color:var(--wa-text)"> Email Verification (stays secure):</label>
-     <div style="display:flex;gap:6px;margin-top:4px">
-      <select class="input-field" id="auth-country-code" style="width:110px;flex:none">
-       <option value="+1">+1 (US)</option>
-       <option value="+91" selected>+91 (IN)</option>
-       <option value="+44">+44 (UK)</option>
-       <option value="+61">+61 (AU)</option>
-       <option value="+971">+971 (AE)</option>
-       <option value="email">📧 Email</option>
-      </select>
-      <input class="input-field" id="auth-contact-input" placeholder="Phone or email" required autocomplete="off">
-     </div>
-    </div>
-   </div>
-
-   <div class="modal-foot" style="margin:10px -22px -20px;padding-bottom:14px">
-    <button type="submit" class="btn-primary" id="btn-auth-send-code" style="width:100%">Send Verification Code</button>
-   </div>
+  <form id="form-login" class="modal-body">
+   <label style="font-size:.8rem;font-weight:600">Nickname</label>
+   <input class="input-field" id="lg-nick" placeholder="your nickname" maxlength="21" required autocomplete="username" autocapitalize="none">
+   <label style="font-size:.8rem;font-weight:600">Password</label>
+   <input class="input-field" id="lg-pw" type="password" placeholder="password" required autocomplete="current-password">
+   <div class="auth-err" id="lg-err"></div>
+   <button type="submit" class="btn-primary" id="lg-btn" style="width:100%">Log in</button>
+   <div class="hintp">Use the same nickname and password on any device.</div>
   </form>
 
-  <!-- STEP 2: 6-Digit OTP Verification Screen -->
-  <form id="form-auth-step2" class="modal-body" style="display:none;text-align:center">
-   <div style="font-size:2.4rem">🔐</div>
-   <h3 style="font-size:1.15rem;font-weight:700">Enter Verification Code</h3>
-   <p style="font-size:.84rem;color:var(--wa-mute);margin-top:-6px" id="auth-otp-target-label">
-    We sent a 6-digit code to your mobile / email.
-   </p>
-
-   <div style="margin:14px 0">
-    <input class="input-field" id="auth-otp-input" placeholder="• • • • • •" maxlength="6" style="text-align:center;font-size:1.8rem;letter-spacing:8px;font-weight:700" required autocomplete="off">
-   </div>
-   <div style="font-size:.76rem;color:var(--wa-mute)">
-    Didn't get the code? <a href="#" id="auth-resend-link" style="color:var(--wa-teal);font-weight:600;text-decoration:none">Resend Code</a>
-   </div>
-
-   <div class="modal-foot" style="margin:12px -22px -20px;padding-bottom:14px">
-    <button type="button" class="btn-secondary" id="btn-auth-back">Back</button>
-    <button type="submit" class="btn-primary" style="flex:1">Verify & Continue</button>
-   </div>
+  <form id="form-signup" class="modal-body" style="display:none">
+   <label style="font-size:.8rem;font-weight:600">Nickname (used to log in, must be unique)</label>
+   <input class="input-field" id="su-nick" placeholder="3-20 letters, numbers, _ or ." maxlength="21" required autocomplete="username" autocapitalize="none">
+   <label style="font-size:.8rem;font-weight:600">Display name (optional)</label>
+   <input class="input-field" id="su-name" placeholder="Shown to friends" maxlength="24" autocomplete="off">
+   <label style="font-size:.8rem;font-weight:600">Password (at least 6 characters)</label>
+   <input class="input-field" id="su-pw" type="password" required minlength="6" autocomplete="new-password">
+   <input class="input-field" id="su-pw2" type="password" placeholder="Repeat password" required minlength="6" autocomplete="new-password">
+   <select class="input-field" id="su-type"><option value="personal">👤 Personal account</option><option value="business">💼 Business account</option></select>
+   <div class="auth-err" id="su-err"></div>
+   <button type="submit" class="btn-primary" id="su-btn" style="width:100%">Create account</button>
+   <div class="hintp">You get a unique Linkup ID automatically. There is no password reset, so remember your password.</div>
   </form>
  </div>
 </div>
@@ -1511,15 +1463,6 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
  </div>
 </div>
 
-<!-- Real-time Push Notification for OTP -->
-<div id="push-otp-banner">
- <span>📲</span>
- <div>
-  <div style="font-size:.78rem;color:#94a3b8">WalkieTalkie Security Verification</div>
-  <div style="font-size:.9rem">Your 6-digit code is: <span class="otp-pill" id="banner-otp-code">---</span></div>
- </div>
-</div>
-
 <!-- Hidden File Inputs -->
 <input type="file" id="file-input-photo" accept="image/*" hidden>
 <input type="file" id="input-chat-img" accept="image/*" multiple hidden>
@@ -1530,6 +1473,9 @@ input,select,textarea{font:inherit;color:inherit;outline:none}
 
 <div id="toast" role="status"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 (function(){
@@ -1539,10 +1485,87 @@ const $$=s=>document.querySelectorAll(s);
 const ECHO='ECHO00',ALPHA='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const _SECRET_ADMIN_ID='20262026';
 
+/* Every account on this device keeps its own data: keys are suffixed with the active nickname. */
+let ACTIVE=null;try{ACTIVE=JSON.parse(localStorage.getItem('lk_active'))}catch(e){}
+const GLOBAL_KEYS=new Set(['wt_theme','lk_accounts','lk_active']);
+const nsKey=k=>GLOBAL_KEYS.has(k)?k:k+'@'+(ACTIVE||'_');
 const ls={
-  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
-  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  get(k,d){try{const v=localStorage.getItem(nsKey(k));return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(nsKey(k),JSON.stringify(v))}catch(e){}}
 };
+
+/* ========================================================
+   FIREBASE CORE (free Spark plan): accounts, directory, presence
+   ======================================================== */
+const firebaseConfig={
+  apiKey:"AIzaSyBG2Uo_8MWX_vXwqBtG0HGSj8TN8LBtV-0",
+  authDomain:"linkup-5197a.firebaseapp.com",
+  /* CHECK: copy the exact URL from Firebase console > Realtime Database > Data tab */
+  databaseURL:"https://linkup-5197a-default-rtdb.firebaseio.com",
+  projectId:"linkup-5197a",
+  storageBucket:"linkup-5197a.firebasestorage.app",
+  messagingSenderId:"1078232496719",
+  appId:"1:1078232496719:web:e4c506500d47af7185083a"
+};
+const EMAIL_DOMAIN='@linkup.app';
+let fbAuth=null,fbDb=null,fbUid=null,fbReady=false,fbTimer=null,fbConnBound=false;
+const cleanNick=x=>String(x||'').trim().toLowerCase().replace(/^@/,'');
+const nickOk=n=>/^[a-z0-9_.]{3,20}$/.test(n);
+/* One Firebase app per nickname, so several accounts can stay signed in on one device. */
+function fbGet(nick){
+  const n='acc_'+nick;
+  try{return firebase.app(n)}catch(e){return firebase.initializeApp(firebaseConfig,n)}
+}
+async function claimId(db,uid,nick,name,type){
+  for(let i=0;i<30;i++){
+    const cand=genId();
+    const r=await db.ref('directory/'+cand).transaction(c=>c===null?{uid,nick,name,accountType:type,online:false}:undefined);
+    if(r.committed)return cand;
+  }
+  throw new Error('Could not allocate a Linkup ID. Try again.');
+}
+function fbSaveContactsSoon(){
+  if(!fbReady)return;
+  clearTimeout(fbTimer);
+  fbTimer=setTimeout(()=>{
+    const o={};
+    contacts.forEach(c=>{if(c.isGroup||c.id===ECHO)return;o[c.id]={id:c.id,name:c.name||'',customName:c.customName||'',accountType:c.accountType||'personal'}});
+    fbDb.ref('owners/'+fbUid+'/contacts').set(o).catch(()=>{});
+  },1500);
+}
+function fbPresenceNow(oldId){
+  if(!fbReady||!me)return;
+  if(oldId&&oldId!==me.id)fbDb.ref('directory/'+oldId+'/online').onDisconnect().cancel().catch(()=>{});
+  const r=fbDb.ref('directory/'+me.id);
+  r.child('online').onDisconnect().set(false);
+  r.child('lastSeen').onDisconnect().set(firebase.database.ServerValue.TIMESTAMP);
+  r.child('online').set(true);
+}
+function fbUpdateProfile(){
+  if(!fbReady||!me)return;
+  fbDb.ref('directory/'+me.id).update({name:me.name,accountType:me.accountType||'personal'}).catch(()=>{});
+}
+async function fbBoot(){
+  if(!me||!me.nick||typeof firebase==='undefined')return;
+  try{
+    const app=fbGet(me.nick);
+    fbAuth=app.auth();fbDb=app.database();
+    await new Promise(res=>{const u=fbAuth.onAuthStateChanged(()=>{u();res()})});
+    if(!fbAuth.currentUser){toast('Please log in again to reconnect');openAuth('login',me.nick,true);return}
+    fbUid=fbAuth.currentUser.uid;fbReady=true;
+    if(!fbConnBound){fbConnBound=true;fbDb.ref('.info/connected').on('value',s=>{if(s.val())fbPresenceNow()})}
+    fbDb.ref('directory').on('value',s=>{
+      const v=s.val()||{};
+      const base=[{id:ECHO,name:'Echo Test',accountType:'business',verified:true},{id:'20262026',name:'Admin Support',accountType:'business',verified:true}];
+      Object.keys(v).forEach(id=>{
+        if(me&&id===me.id)return;
+        base.push({id,name:v[id].name||v[id].nick||id,nick:v[id].nick||'',accountType:v[id].accountType||'personal',online:!!v[id].online,verified:true});
+      });
+      registeredAccounts=base;
+      if(typeof renderDirectory==='function')renderDirectory();
+    },err=>console.warn('Directory read failed',err&&err.code));
+  }catch(e){console.warn('Firebase boot failed',e&&e.code||e)}
+}
 
 const genId=()=>{let s='';crypto.getRandomValues(new Uint8Array(6)).forEach(b=>s+=ALPHA[b%32]);return s};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
@@ -1616,7 +1639,7 @@ $$('.theme-btn').forEach(btn=>{
 });
 
 /* ========================================================
-   AUDIO & REALISTIC WALKIE-TALKIE RADIO SOUNDS
+   AUDIO & REALISTIC LIVE TALK RADIO SOUNDS
    ======================================================== */
 let actx;
 function getAudioContext(){
@@ -1636,7 +1659,7 @@ function beep(f,d,delay=0,type='sine',v=.07){
   }catch(e){}
 }
 
-/* Radio squelch static burst (authentic walkie-talkie opening sound) */
+/* Radio squelch static burst (authentic live talk opening sound) */
 function squelch(){
   try{
     const ctx=getAudioContext();
@@ -1680,10 +1703,10 @@ function stopRingtone(){
 }
 
 /* ========================================================
-   PAGE OPEN: WALKIE-TALKIE VOICE ANNOUNCEMENT
+   PAGE OPEN: LIVE TALK VOICE ANNOUNCEMENT
    ======================================================== */
 let radioVoiceSpoken=false;
-function speakWalkieTalkieWelcome(){
+function speakLinkupWelcome(){
   if(radioVoiceSpoken)return;
   radioVoiceSpoken=true;
 
@@ -1692,7 +1715,7 @@ function speakWalkieTalkieWelcome(){
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     const uname=me?me.name:'Unit';
-    const text=`Walkie Talkie online. Frequency open for ${uname}. Standing by. Over.`;
+    const text=`Linkup is online. Welcome, ${uname}.`;
     const utt=new SpeechSynthesisUtterance(text);
     utt.rate=1.03;
     utt.pitch=0.92;
@@ -1706,19 +1729,19 @@ function speakWalkieTalkieWelcome(){
     window.speechSynthesis.speak(utt);
   }
 
-  toast('📻 Walkie-Talkie Frequency Active. Standing by, Over!');
+  toast('📻 Linkup is ready!');
 }
 
 // Speak once page is ready
-setTimeout(speakWalkieTalkieWelcome,600);
+setTimeout(speakLinkupWelcome,600);
 // Also unlock on first user gesture if browser autoplay blocked audio
 ['pointerdown','keydown','click'].forEach(evt=>{
-  window.addEventListener(evt,()=>{if(!radioVoiceSpoken)speakWalkieTalkieWelcome()},{once:true});
+  window.addEventListener(evt,()=>{if(!radioVoiceSpoken)speakLinkupWelcome()},{once:true});
 });
 
 $('#btn-test-radio').onclick=()=>{
   radioVoiceSpoken=false;
-  speakWalkieTalkieWelcome();
+  speakLinkupWelcome();
 };
 
 /* ---------- State ---------- */
@@ -1738,7 +1761,7 @@ let channels=ls.get('wt_channels',{})||{
     id:'TECH-UPDATES',name:'Tech & Gadgets',category:'Technology & Code',desc:'Daily tech news, product launches & tips',owner:ECHO,followers:[ECHO],photo:''
   },
   'OFFICIAL-ANNOUNCE':{
-    id:'OFFICIAL-ANNOUNCE',name:'WalkieTalkie Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
+    id:'OFFICIAL-ANNOUNCE',name:'Linkup Official',category:'Business & Retail',desc:'Official feature announcements and release notes',owner:'20262026',followers:['20262026'],photo:''
   }
 };
 
@@ -1760,6 +1783,7 @@ const save=()=>{
   ls.set('wt_blocked',[...blocked]);
   ls.set('wt_accounts',registeredAccounts);
   if(me)ls.set('wt_me',me);
+  fbSaveContactsSoon();
 };
 
 /* Secret Admin Verification */
@@ -1881,12 +1905,12 @@ function isContactOnline(id){
 /* ---------- PeerJS Setup ---------- */
 function startPeer(){
   if(!me||typeof Peer==='undefined')return;
-  peer=new Peer('wtalk-'+me.id);
+  peer=new Peer('lkup-'+me.id);
   peer.on('open',()=>{
     flushAllOutbox();
   });
   peer.on('connection',c=>{
-    const rid=c.peer.replace('wtalk-','');
+    const rid=c.peer.replace('lkup-','');
     if(blocked.has(rid)){c.on('open',()=>c.close());return}
     setupConn(c);
   });
@@ -1903,11 +1927,11 @@ function connectTo(id){
   if(id===ECHO||!peer||!peer.open||blocked.has(id)||(conns[id]&&conns[id].open))return;
   if(Date.now()-(tried[id]||0)<4000)return;
   tried[id]=Date.now();
-  setupConn(peer.connect('wtalk-'+id,{reliable:true}));
+  setupConn(peer.connect('lkup-'+id,{reliable:true}));
 }
 
 function setupConn(c){
-  const rid=c.peer.replace('wtalk-','');
+  const rid=c.peer.replace('lkup-','');
   c.on('open',()=>{
     c.pong=Date.now();conns[rid]=c;
     c.send({
@@ -1971,13 +1995,13 @@ function onData(rid,d){
     // Asynchronous Voice Note received
     handleIncomingVoiceNote(rid,d);
   }else if(d.t==='wt_live_start'){
-    // Incoming real-time Walkie Talkie transmission start
+    // Incoming real-time Live Talk transmission start
     handleLiveRadioStart(rid,d);
   }else if(d.t==='wt_live_audio'){
-    // Incoming live Walkie Talkie audio packet
+    // Incoming live Live Talk audio packet
     handleLiveRadioAudio(rid,d);
   }else if(d.t==='wt_live_stop'){
-    // Incoming Walkie Talkie transmission end
+    // Incoming Live Talk transmission end
     handleLiveRadioStop(rid,d);
   }else if(d.t==='ack'){
     handleAck(d.mid,d.status||'delivered');
@@ -2184,13 +2208,13 @@ function sendVoiceNote(blob,dur){
 }
 
 /* ========================================================
-   FEATURE 2: REAL-TIME WALKIE-TALKIE RADIO (LIVE PTT STREAM)
+   FEATURE 2: REAL-TIME LIVE TALK RADIO (LIVE PTT STREAM)
    ======================================================== */
 let liveRadioRec=null,liveRadioT0=0,liveRadioTimerI=null;
 let liveRadioChunks=[];
 let isLiveTransmitting=false;
 
-function startWalkieTalkieBroadcast(){
+function startLiveTalkBroadcast(){
   if(isLiveTransmitting||!activeChatId)return;
   isLiveTransmitting=true;
 
@@ -2226,7 +2250,7 @@ function startWalkieTalkieBroadcast(){
       if(ev.data.size)liveRadioChunks.push(ev.data);
     };
 
-    liveRadioRec.onstop=()=>finishWalkieTalkieBroadcast(liveRadioRec);
+    liveRadioRec.onstop=()=>finishLiveTalkBroadcast(liveRadioRec);
 
     liveRadioRec.start();
     liveRadioT0=performance.now();
@@ -2239,7 +2263,7 @@ function startWalkieTalkieBroadcast(){
   });
 }
 
-function stopWalkieTalkieBroadcast(){
+function stopLiveTalkBroadcast(){
   if(!isLiveTransmitting)return;
   isLiveTransmitting=false;
 
@@ -2256,14 +2280,14 @@ function stopWalkieTalkieBroadcast(){
   }
 }
 
-function finishWalkieTalkieBroadcast(rec){
+function finishLiveTalkBroadcast(rec){
   const dur=Math.max(0.6,(performance.now()-liveRadioT0)/1000);
   const blob=new Blob(liveRadioChunks,{type:rec.mimeType||'audio/webm'});
   const blobUrl=URL.createObjectURL(blob);
   const mid=uid();
   const isGrp=!!groups[activeChatId];
 
-  // Distinct Walkie-Talkie Radio Transmission Card
+  // Distinct Live Talk Transmission Card
   const msg={
     id:mid,
     from:me.id,
@@ -2284,7 +2308,7 @@ function finishWalkieTalkieBroadcast(rec){
 
   if(activeChatId===ECHO){
     setTimeout(()=>{
-      // Echo immediately plays back live walkie-talkie burst
+      // Echo immediately plays back live live talk burst
       squelch();
       $('#audio-banner').classList.add('on');
       $('#banner-name').textContent='Echo Station (462.5625 MHz)';
@@ -2328,7 +2352,7 @@ function finishWalkieTalkieBroadcast(rec){
   });
 }
 
-/* Incoming Walkie-Talkie Live Audio Handlers */
+/* Incoming Live Talk Live Audio Handlers */
 function handleLiveRadioStart(senderId,d){
   squelch();
   $('#audio-banner').classList.add('on');
@@ -2961,7 +2985,7 @@ function openChat(id){
     }
   }
 
-  // Update Walkie-Talkie drawer frequency label
+  // Update Live Talk drawer frequency label
   $('#wt-channel-label').textContent='FREQ: '+(isGrp?'GRP-RADIO ':'DIR-RADIO ')+id.slice(0,6)+' (462.'+Math.abs(id.split('').reduce((a,c)=>a+c.charCodeAt(0),0)%9000+1000)+' MHz)';
 
   // Mark unread as read
@@ -3008,11 +3032,11 @@ function renderMessages(){
     }
 
     if(m.isRadio){
-      // Distinct Walkie-Talkie Live Radio Transmission Card
+      // Distinct Live Talk Live Radio Transmission Card
       const rCard=el('div','wt-radio-card');
       const rIcon=el('div','wt-radio-icon','📻');
       const rBody=el('div','wt-radio-body');
-      const rTitle=el('div','wt-radio-title','Walkie-Talkie Radio');
+      const rTitle=el('div','wt-radio-title','Live Talk');
       const rSub=el('div','wt-radio-sub','Live transmission · '+Math.round(m.dur||2)+'s (Over)');
       rBody.append(rTitle,rSub);
 
@@ -3116,6 +3140,8 @@ $('#image-lightbox').onclick=e=>{
 function refreshUI(){
   if(!me)return;
   $('#settings-my-id').textContent=me.id;
+  $('#settings-my-nick').textContent='@'+(me.nick||'-');
+  renderAccounts();
   $('#settings-name-input').value=me.name;
   $('#settings-account-type').value=me.accountType||'personal';
 
@@ -3144,227 +3170,188 @@ function refreshUI(){
 }
 
 /* ========================================================
-   ADD FRIEND: REAL-TIME VALIDATION & AUTO-SUGGESTIONS
+   ADD FRIEND: DIRECTORY OF ALL REGISTERED PEOPLE + SEARCH
    ======================================================== */
 const friendInput=$('#input-friend-id');
-const friendSuggestList=$('#friend-suggestions-list');
+const friendList=$('#friend-suggestions-list');
 const friendFeedback=$('#friend-search-feedback');
-const friendSubmitBtn=$('#btn-add-friend-submit');
 
 function getDirectoryPeers(){
   const map=new Map();
-  map.set(ECHO,{id:ECHO,name:'Echo Test',accountType:'business'});
-  registeredAccounts.forEach(a=>{
-    if(me && a.id!==me.id)map.set(a.id,a);
-  });
-  contacts.forEach(c=>{
-    if(me && c.id!==me.id&&!map.has(c.id)){
-      map.set(c.id,{id:c.id,name:c.name||c.id,accountType:c.accountType||'personal'});
-    }
-  });
-  Object.keys(conns).forEach(id=>{
-    if(me && id!==me.id&&!map.has(id)){
-      map.set(id,{id,name:conns[id].nm||id,accountType:'personal'});
-    }
-  });
+  registeredAccounts.forEach(a=>{if(!me||a.id!==me.id)map.set(a.id,a)});
+  contacts.forEach(c=>{if(!c.isGroup&&me&&c.id!==me.id&&!map.has(c.id))map.set(c.id,{id:c.id,name:c.name||c.id,accountType:c.accountType||'personal'})});
   return Array.from(map.values());
 }
 
-function updateFriendSuggestions(){
-  const raw=friendInput.value.trim();
-  const q=raw.toLowerCase();
-  const directory=getDirectoryPeers();
-  friendSuggestList.innerHTML='';
-
-  if(!raw){
-    friendFeedback.textContent='Type an ID or select from matching directory below';
-    friendFeedback.style.color='var(--wa-mute)';
-    friendSubmitBtn.disabled=true;
-    friendSuggestList.classList.remove('show');
-    return;
+function addFriend(p){
+  let c=getContact(p.id);
+  if(!c){
+    c={id:p.id,name:p.name||p.nick||p.id,customName:'',photo:'',isGroup:false,accountType:p.accountType||'personal'};
+    contacts.push(c);save();
   }
-
-  const matches=directory.filter(p=>p.id.toLowerCase().includes(q)||p.name.toLowerCase().includes(q));
-
-  if(matches.length>0){
-    friendSuggestList.classList.add('show');
-    matches.slice(0,5).forEach(m=>{
-      const li=el('li');
-      const av=el('div','av');
-      setAvContent(av,displayPhoto(m.id),m.name);
-      const txt=el('div','',{style:'flex:1'});
-      txt.innerHTML='<b>'+m.name+'</b> <span style="font-size:.76rem;color:var(--wa-mute)">('+m.id+')</span>';
-      if(m.accountType==='business'){
-        txt.innerHTML+=' <span class="biz-badge">💼</span>';
-      }
-      li.append(av,txt);
-      li.onclick=()=>{
-        friendInput.value=m.id;
-        $('#input-friend-name').value=m.name;
-        friendSuggestList.classList.remove('show');
-        validateFriendInput();
-      };
-      friendSuggestList.append(li);
-    });
-  }else{
-    friendSuggestList.classList.remove('show');
-  }
-
-  validateFriendInput();
+  closeModal('modal-add-friend');
+  friendInput.value='';
+  openChat(p.id);
 }
 
-function validateFriendInput(){
-  const rawId=friendInput.value.trim().toUpperCase();
-  const directory=getDirectoryPeers();
-  const match=directory.find(p=>p.id===rawId||p.id.toLowerCase()===rawId.toLowerCase());
-
-  if(me && rawId===me.id){
-    friendFeedback.textContent='⚠️ That is your own Walkie Talkie ID';
-    friendFeedback.style.color='var(--wa-red)';
-    friendSubmitBtn.disabled=true;
-  }else if(match){
-    friendFeedback.textContent='✓ User Found: '+match.name+' ('+match.id+')';
-    friendFeedback.style.color='var(--wa-teal)';
-    friendSubmitBtn.disabled=false;
-    if(!$('#input-friend-name').value.trim()){
-      $('#input-friend-name').value=match.name;
-    }
-  }else{
-    friendFeedback.textContent='⚠️ User ID not found in directory. Select from suggestions or verify ID.';
-    friendFeedback.style.color='var(--wa-amber)';
-    friendSubmitBtn.disabled=true;
-  }
+function renderDirectory(){
+  if(!friendList)return;
+  const q=friendInput.value.trim().toLowerCase().replace(/^@/,'');
+  const all=getDirectoryPeers();
+  const list=all.filter(p=>!q||(p.nick||'').toLowerCase().includes(q)||(p.name||'').toLowerCase().includes(q)||p.id.toLowerCase().includes(q))
+    .sort((a,b)=>(b.online?1:0)-(a.online?1:0)||String(a.nick||a.name).localeCompare(String(b.nick||b.name)));
+  friendFeedback.textContent=list.length+(q?' match'+(list.length===1?'':'es'):' registered people')+(fbReady?'':' · connecting…');
+  friendList.innerHTML='';
+  list.forEach(p=>{
+    const li=el('li','dir-row');
+    const av=el('div','av');setAvContent(av,displayPhoto(p.id),p.name||p.id);
+    const ci=el('div','ci');
+    const b=el('b','',p.name||p.nick||p.id);
+    const sm=el('small','',(p.nick?'@'+p.nick+' · ':'')+'Linkup ID '+p.id+(p.accountType==='business'?' · 💼':''));
+    ci.append(b,sm);
+    const dot=el('span','dir-dot'+(p.online?' on':''));dot.title=p.online?'Online':'Offline';
+    const btn=el('button','btn-secondary',getContact(p.id)?'Chat':'Add');
+    btn.type='button';btn.style.padding='4px 12px';
+    li.append(av,ci,dot,btn);
+    li.onclick=()=>addFriend(p);
+    friendList.append(li);
+  });
 }
-
-friendInput.addEventListener('input',updateFriendSuggestions);
-
+friendInput.addEventListener('input',renderDirectory);
 $('#form-add-friend').onsubmit=e=>{
   e.preventDefault();
-  const rawId=friendInput.value.trim();
-  const rawName=$('#input-friend-name').value.trim();
-  const id=normId(rawId);
-  if(!id)return;
-
-  let c=getContact(id);
-  if(!c){
-    c={id,name:rawName||id,customName:rawName||'',photo:'',isGroup:false};
-    contacts.push(c);
-  }else{
-    if(rawName)c.customName=rawName;
-  }
-  save();
-  closeModal('modal-add-friend');
-  friendInput.value='';$('#input-friend-name').value='';
-  openChat(id);
+  const first=friendList.querySelector('.dir-row');
+  if(first)first.click();
 };
+renderDirectory();
 
 /* ========================================================
-   AUTHENTICATION & PHONE / EMAIL OTP VERIFICATION
+   AUTH: NICKNAME + PASSWORD (Firebase), MULTIPLE ACCOUNTS
    ======================================================== */
-let generatedOtp='';
-let pendingAuthData=null;
+const AUTH_ERRORS={
+  'auth/wrong-password':'Wrong nickname or password.',
+  'auth/invalid-credential':'Wrong nickname or password.',
+  'auth/invalid-login-credentials':'Wrong nickname or password.',
+  'auth/user-not-found':'No account with that nickname.',
+  'auth/email-already-in-use':'That nickname is already taken. Pick another.',
+  'auth/weak-password':'Password must be at least 6 characters.',
+  'auth/operation-not-allowed':'Turn on Email/Password sign-in in Firebase > Authentication.',
+  'auth/network-request-failed':'No internet connection.',
+  'auth/too-many-requests':'Too many attempts. Wait a minute and try again.',
+  'PERMISSION_DENIED':'Database rules block this. Publish the rules file in Firebase.'
+};
+function authErr(sel,e){
+  const code=(e&&(e.code||e.message))||'';
+  $(sel).textContent=AUTH_ERRORS[code]||(String(code).includes('PERMISSION_DENIED')?AUTH_ERRORS.PERMISSION_DENIED:(e&&e.message)||'Something went wrong');
+}
+function setBusy(sel,b,txt){const x=$(sel);x.disabled=b;if(txt)x.textContent=txt}
+function setAuthMode(m){
+  $('#form-login').style.display=m==='login'?'flex':'none';
+  $('#form-signup').style.display=m==='signup'?'flex':'none';
+  $('#tab-login').classList.toggle('on',m==='login');
+  $('#tab-signup').classList.toggle('on',m==='signup');
+}
+function openAuth(mode,nick,canClose){
+  $('#auth-close').hidden=!canClose;
+  $('#lg-err').textContent='';$('#su-err').textContent='';$('#lg-pw').value='';
+  if(nick)$('#lg-nick').value=nick;
+  setAuthMode(mode||'login');
+  openModal('modal-auth');
+}
+$('#tab-login').onclick=()=>setAuthMode('login');
+$('#tab-signup').onclick=()=>setAuthMode('signup');
+$('#btn-add-account').onclick=()=>{closeModal('modal-settings');openAuth('login','',true)};
 
-function checkUsernameUnique(name){
-  if(!name)return false;
-  const lc=name.trim().toLowerCase();
-  return !registeredAccounts.some(a=>a.name.toLowerCase()===lc && (!me || a.id!==me.id));
+/* Save the profile for this nickname on this device, make it active, and reload. */
+function finishLogin(prof,remoteContacts){
+  const key=prof.nick;
+  const accts=ls.get('lk_accounts',[]).filter(a=>a.nick!==key);
+  accts.push({nick:key,id:prof.id,name:prof.name});
+  ls.set('lk_accounts',accts);
+  try{
+    const old=JSON.parse(localStorage.getItem('wt_me@'+key)||'null');
+    if(old&&old.photo)prof.photo=old.photo;
+    localStorage.setItem('wt_me@'+key,JSON.stringify(prof));
+    if(!localStorage.getItem('wt_contacts@'+key)){
+      const rc=(remoteContacts||[]).map(c=>({id:c.id,name:c.name||c.id,customName:c.customName||'',photo:'',isGroup:false,accountType:c.accountType||'personal'}));
+      localStorage.setItem('wt_contacts@'+key,JSON.stringify([{id:ECHO,name:'Echo Test',customName:'',photo:'',isGroup:false,accountType:'business'},...rc]));
+    }
+  }catch(e){}
+  ls.set('lk_active',key);
+  location.reload();
 }
 
-$('#auth-name').addEventListener('input',()=>{
-  const val=$('#auth-name').value.trim();
-  const err=$('#auth-name-error');
-  const btn=$('#btn-auth-send-code');
-  if(!val){
-    err.style.display='none';
-    btn.disabled=true;
-    return;
-  }
-  const isUnique=checkUsernameUnique(val);
-  if(!isUnique){
-    err.style.display='block';
-    btn.disabled=true;
+async function doSignup(nick,pw,dispName,type){
+  const app=fbGet(nick),auth=app.auth(),db=app.database();
+  const cred=await auth.createUserWithEmailAndPassword(nick+EMAIL_DOMAIN,pw);
+  const uid=cred.user.uid,name=dispName||nick;
+  const id=await claimId(db,uid,nick,name,type);
+  await db.ref('owners/'+uid).set({id});
+  finishLogin({id,nick,name,photo:'',accountType:type,verified:true},[]);
+}
+async function doLogin(nick,pw){
+  const app=fbGet(nick),auth=app.auth(),db=app.database();
+  const cred=await auth.signInWithEmailAndPassword(nick+EMAIL_DOMAIN,pw);
+  const uid=cred.user.uid;
+  const o=(await db.ref('owners/'+uid).get()).val()||{};
+  let id=o.id,prof;
+  if(!id){
+    id=await claimId(db,uid,nick,nick,'personal');
+    await db.ref('owners/'+uid+'/id').set(id);
+    prof={id,nick,name:nick,photo:'',accountType:'personal',verified:true};
   }else{
-    err.style.display='none';
-    btn.disabled=false;
+    const d=(await db.ref('directory/'+id).get()).val()||{};
+    prof={id,nick,name:d.name||nick,photo:'',accountType:d.accountType||'personal',verified:true};
   }
-});
+  finishLogin(prof,Object.values(o.contacts||{}));
+}
 
-$('#form-auth-step1').onsubmit=e=>{
+$('#form-login').onsubmit=async e=>{
   e.preventDefault();
-  const name=$('#auth-name').value.trim();
-  if(!checkUsernameUnique(name)){
-    $('#auth-name-error').style.display='block';
-    return;
-  }
-
-  const accountType=$('input[name="auth-account-type"]:checked').value;
-  const cCode=$('#auth-country-code').value;
-  const contactInput=$('#auth-contact-input').value.trim();
-  const fullContact=cCode==='email'?contactInput:(cCode+' '+contactInput);
-
-  generatedOtp=String(Math.floor(100000 + Math.random()*900000));
-  pendingAuthData={name,accountType,fullContact};
-
-  $('#form-auth-step1').style.display='none';
-  $('#form-auth-step2').style.display='block';
-  $('#auth-otp-target-label').textContent='We sent a 6-digit code to '+fullContact;
-  $('#auth-otp-input').value='';
-
-  $('#banner-otp-code').textContent=generatedOtp.slice(0,3)+'-'+generatedOtp.slice(3);
-  $('#push-otp-banner').style.display='flex';
-  beep(880,.08);beep(1100,.12,.08);
-
-  setTimeout(()=>{
-    $('#push-otp-banner').style.display='none';
-  },12000);
+  const nick=cleanNick($('#lg-nick').value),pw=$('#lg-pw').value;
+  $('#lg-err').textContent='';
+  if(!nickOk(nick))return $('#lg-err').textContent='Nickname: 3-20 letters, numbers, _ or .';
+  if(typeof firebase==='undefined')return $('#lg-err').textContent='Could not load Firebase. Check your internet.';
+  setBusy('#lg-btn',true,'Logging in…');
+  try{await doLogin(nick,pw)}catch(err){authErr('#lg-err',err);setBusy('#lg-btn',false,'Log in')}
+};
+$('#form-signup').onsubmit=async e=>{
+  e.preventDefault();
+  const nick=cleanNick($('#su-nick').value),pw=$('#su-pw').value;
+  $('#su-err').textContent='';
+  if(!nickOk(nick))return $('#su-err').textContent='Nickname: 3-20 letters, numbers, _ or .';
+  if(pw!==$('#su-pw2').value)return $('#su-err').textContent='Passwords do not match.';
+  if(typeof firebase==='undefined')return $('#su-err').textContent='Could not load Firebase. Check your internet.';
+  setBusy('#su-btn',true,'Creating…');
+  try{await doSignup(nick,pw,$('#su-name').value.trim().slice(0,24),$('#su-type').value)}
+  catch(err){authErr('#su-err',err);setBusy('#su-btn',false,'Create account')}
 };
 
-$('#auth-resend-link').onclick=e=>{
-  e.preventDefault();
-  generatedOtp=String(Math.floor(100000 + Math.random()*900000));
-  $('#banner-otp-code').textContent=generatedOtp.slice(0,3)+'-'+generatedOtp.slice(3);
-  $('#push-otp-banner').style.display='flex';
-  beep(880,.08);beep(1100,.12,.08);
-  toast('New verification code sent!');
-};
-
-$('#btn-auth-back').onclick=()=>{
-  $('#form-auth-step2').style.display='none';
-  $('#form-auth-step1').style.display='block';
-};
-
-$('#form-auth-step2').onsubmit=e=>{
-  e.preventDefault();
-  const entered=$('#auth-otp-input').value.trim().replace(/\D/g,'');
-  if(entered!==generatedOtp){
-    return toast('❌ Invalid verification code. Please check your notification.');
-  }
-
-  const newId=genId();
-  me={
-    id:newId,
-    name:pendingAuthData.name,
-    photo:'',
-    accountType:pendingAuthData.accountType,
-    verified:true,
-    contactInfo:pendingAuthData.fullContact,
-    secretAdmin:newId===_SECRET_ADMIN_ID
-  };
-
-  registeredAccounts.push({
-    id:newId,
-    name:me.name,
-    accountType:me.accountType,
-    verified:true
+/* ---- Accounts on this device ---- */
+function switchAccount(nick){ls.set('lk_active',nick);location.reload()}
+async function removeAccount(nick,wipe){
+  try{await fbGet(nick).auth().signOut()}catch(e){}
+  const rest=ls.get('lk_accounts',[]).filter(a=>a.nick!==nick);
+  ls.set('lk_accounts',rest);
+  if(wipe)['wt_me','wt_contacts','wt_groups','wt_channels','wt_statuses','wt_msgs','wt_outbox','wt_blocked','wt_accounts'].forEach(k=>localStorage.removeItem(k+'@'+nick));
+  if(ACTIVE===nick)ls.set('lk_active',rest.length?rest[0].nick:null);
+  location.reload();
+}
+function renderAccounts(){
+  const box=$('#acct-list');if(!box)return;
+  box.innerHTML='';
+  ls.get('lk_accounts',[]).forEach(a=>{
+    const row=el('div','acct-row');
+    const ci=el('div','ci');ci.append(el('b','',a.name||a.nick),el('small','','@'+a.nick+' · ID '+a.id));
+    row.append(ci);
+    if(a.nick===ACTIVE){row.append(el('span','hintp','✓ Active'))}
+    else{const sw=el('button','btn-secondary','Switch');sw.type='button';sw.onclick=()=>switchAccount(a.nick);row.append(sw)}
+    const rm=el('button','btn-danger','Remove');rm.type='button';rm.style.padding='4px 10px';
+    rm.onclick=()=>{if(confirm('Remove @'+a.nick+' from this device? You can log in again anytime.')){removeAccount(a.nick,confirm('Also delete its chats stored on this device?'))}};
+    row.append(rm);
+    box.append(row);
   });
-
-  save();
-  closeModal('modal-auth');
-  startPeer();
-  refreshUI();
-  toast('✓ Welcome '+me.name+'! Radio frequency active.');
-  speakWalkieTalkieWelcome();
-};
+}
 
 /* ========================================================
    BUSINESS ACCOUNT CHANNELS
@@ -3466,7 +3453,7 @@ async function initiateCall(isVideo){
     $('#call-overlay').style.display='flex';
     setAvContent($('#call-stage-av'),displayPhoto(activeChatId),displayName(activeChatId));
 
-    activeMediaCall=peer.call('wtalk-'+activeChatId,stream,{metadata:{video:isVideo,callerName:me.name}});
+    activeMediaCall=peer.call('lkup-'+activeChatId,stream,{metadata:{video:isVideo,callerName:me.name}});
     setupMediaCallEvents(activeMediaCall);
   }catch(e){
     toast('Media access failed: '+e.message);
@@ -3474,7 +3461,7 @@ async function initiateCall(isVideo){
 }
 
 function handleIncomingMediaCall(call){
-  const callerId=call.peer.replace('wtalk-','');
+  const callerId=call.peer.replace('lkup-','');
   if(blocked.has(callerId)){call.close();return}
   startRingtone();
   $('#inc-caller-name').textContent=displayName(callerId);
@@ -3716,23 +3703,23 @@ micSendBtn.addEventListener('pointerup',()=>stopVoiceNoteRecording(vnSlideCancel
 micSendBtn.addEventListener('pointercancel',()=>stopVoiceNoteRecording(true));
 
 /* ========================================================
-   WALKIE TALKIE PTT DIAL & SPACEBAR SHORTCUT
+   LIVE TALK PTT DIAL & SPACEBAR SHORTCUT
    ======================================================== */
 $('#btn-wt-toggle').onclick=()=>$('#wt-drawer').classList.toggle('show');
 $('#btn-close-wt').onclick=()=>$('#wt-drawer').classList.remove('show');
 $('#btn-drawer-test-voice').onclick=()=>{
   radioVoiceSpoken=false;
-  speakWalkieTalkieWelcome();
+  speakLinkupWelcome();
 };
 
 const wtPtt=$('#wt-ptt-btn');
 wtPtt.addEventListener('pointerdown',e=>{
   e.preventDefault();
   wtPtt.setPointerCapture(e.pointerId);
-  startWalkieTalkieBroadcast();
+  startLiveTalkBroadcast();
 });
-wtPtt.addEventListener('pointerup',()=>stopWalkieTalkieBroadcast());
-wtPtt.addEventListener('pointercancel',()=>stopWalkieTalkieBroadcast());
+wtPtt.addEventListener('pointerup',()=>stopLiveTalkBroadcast());
+wtPtt.addEventListener('pointercancel',()=>stopLiveTalkBroadcast());
 
 /* Spacebar Push-To-Talk Shortcut (while not focused on typing input) */
 let spacePttActive=false;
@@ -3740,14 +3727,14 @@ window.addEventListener('keydown',e=>{
   if(e.code==='Space'&&!spacePttActive&&activeChatId&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){
     e.preventDefault();
     spacePttActive=true;
-    startWalkieTalkieBroadcast();
+    startLiveTalkBroadcast();
   }
 });
 window.addEventListener('keyup',e=>{
   if(e.code==='Space'&&spacePttActive){
     e.preventDefault();
     spacePttActive=false;
-    stopWalkieTalkieBroadcast();
+    stopLiveTalkBroadcast();
   }
 });
 
@@ -3773,7 +3760,7 @@ $('#btn-user-manual').onclick=()=>openModal('modal-user-guide');
 $('#btn-settings-manual').onclick=()=>{closeModal('modal-settings');openModal('modal-user-guide')};
 $('#btn-settings-test-radio').onclick=()=>{
   radioVoiceSpoken=false;
-  speakWalkieTalkieWelcome();
+  speakLinkupWelcome();
 };
 
 /* User Manual Tabs */
@@ -3787,27 +3774,10 @@ $$('.gtab').forEach(tab=>{
   };
 });
 
-/* Logout Action */
+/* Logout Action: signs out this account and removes it from the device list (chats stay saved locally) */
 $('#btn-logout').onclick=()=>{
-  if(confirm('Are you sure you want to log out from WalkieTalkie?')){
-    ls.set('wt_me',null);
-    me=null;
-    if(peer){
-      try{peer.destroy()}catch(e){}
-      peer=null;
-    }
-    conns={};
-    activeChatId=null;
-    closeModal('modal-settings');
-    $('#app').classList.remove('in-chat');
-    $('#chat-pane').style.display='none';
-    $('#no-chat').style.display='flex';
-    openModal('modal-auth');
-    $('#form-auth-step1').style.display='block';
-    $('#form-auth-step2').style.display='none';
-    $('#auth-name').value='';
-    $('#auth-contact-input').value='';
-    toast('Logged out successfully');
+  if(confirm('Log out of @'+(me&&me.nick||'this account')+' on this device?')){
+    removeAccount(ACTIVE,false);
   }
 };
 
@@ -3914,30 +3884,39 @@ $('#btn-remove-my-photo').onclick=()=>{
 $('#btn-save-my-name').onclick=()=>{
   const n=$('#settings-name-input').value.trim();
   if(!n)return toast('Name cannot be empty');
-  if(!checkUsernameUnique(n))return toast('This username is already taken');
   me.name=n.slice(0,24);
-  save();refreshUI();toast('Name saved!');
+  const ac=ls.get('lk_accounts',[]);const ar=ac.find(a=>a.nick===ACTIVE);if(ar){ar.name=me.name;ls.set('lk_accounts',ac)}
+  save();fbUpdateProfile();refreshUI();toast('Name saved!');
 };
 $('#settings-account-type').onchange=e=>{
   me.accountType=e.target.value;
-  save();refreshUI();
+  save();fbUpdateProfile();refreshUI();
   toast('Account type updated to '+me.accountType);
 };
 $('#btn-copy-my-id').onclick=()=>{
   navigator.clipboard.writeText(me.id).then(()=>toast('ID copied to clipboard!'));
 };
-$('#btn-set-custom-id').onclick=()=>{
-  const n=prompt('Set custom ID:',me.id);
+$('#btn-set-custom-id').onclick=async()=>{
+  if(!fbReady)return toast('Still connecting. Try again in a moment.');
+  const n=prompt('Set a custom Linkup ID (4-20 letters or numbers):',me.id);
   if(!n)return;
-  const nid=normId(n);
-  if(nid.length<4)return toast('ID must be at least 4 chars');
-  me.id=nid;
-  if(nid===_SECRET_ADMIN_ID)me.secretAdmin=true;
-  save();
-  if(peer){try{peer.destroy()}catch(e){}}
-  startPeer();
-  refreshUI();
-  toast('Your ID is now '+nid);
+  const nid=normId(n).replace(/-/g,'');
+  if(nid.length<4||nid.length>20)return toast('ID must be 4-20 letters or numbers');
+  if(nid===me.id)return;
+  try{
+    const r=await fbDb.ref('directory/'+nid).transaction(c=>c===null?{uid:fbUid,nick:me.nick,name:me.name,accountType:me.accountType||'personal',online:true}:undefined);
+    if(!r.committed)return toast('That Linkup ID is already taken');
+    const old=me.id;
+    await fbDb.ref('owners/'+fbUid+'/id').set(nid);
+    await fbDb.ref('directory/'+old).remove();
+    me.id=nid;
+    if(nid===_SECRET_ADMIN_ID)me.secretAdmin=true;
+    const ac=ls.get('lk_accounts',[]);const ar=ac.find(x=>x.nick===ACTIVE);if(ar){ar.id=nid;ls.set('lk_accounts',ac)}
+    save();fbPresenceNow(old);
+    if(peer){try{peer.destroy()}catch(e){}}
+    startPeer();refreshUI();
+    toast('Your Linkup ID is now '+nid);
+  }catch(e){toast('Could not change ID: '+(e&&e.code||e.message))}
 };
 
 /* Secret Admin Panel */
@@ -3996,12 +3975,13 @@ $$('.ftab').forEach(b=>{
 $('#search-input').oninput=()=>renderChatsList();
 
 /* App Initialization */
-if(!me){
-  openModal('modal-auth');
+if(!me||!me.nick){
+  openAuth('login','',false);
 }else{
   if(me.id===_SECRET_ADMIN_ID)me.secretAdmin=true;
   startPeer();
   refreshUI();
+  fbBoot();
 }
 
 })();
